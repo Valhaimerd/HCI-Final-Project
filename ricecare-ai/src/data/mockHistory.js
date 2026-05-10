@@ -1,0 +1,53 @@
+export const mockHistory = [
+  {
+    id: "history-001",
+    date: "March 21, 2026",
+    possibleIssue: "Rice Blast Disease",
+    confidence: 86,
+    riskLevel: "High",
+    status: "Under Review",
+    category: "Disease",
+    explanation:
+      "The image may show leaf spots and irregular lesions that match Rice Blast symptoms.",
+    treatmentSummary: "Improve drainage and ask a technician before chemical treatment.",
+    preventionSummary: "Monitor the field and avoid overcrowding.",
+    auditTrail: [
+      "Image checked",
+      "AI result generated",
+      "Recommendation viewed",
+      "Technician review requested",
+    ],
+  },
+  {
+    id: "history-002",
+    date: "March 18, 2026",
+    possibleIssue: "Brown Spot",
+    confidence: 74,
+    riskLevel: "Medium",
+    status: "Shared with Technician",
+    category: "Disease",
+    explanation: "Small brown marks and discoloration may match Brown Spot symptoms.",
+    treatmentSummary: "Monitor spreading and improve crop nutrition when needed.",
+    preventionSummary: "Use healthy seeds and maintain proper water management.",
+    auditTrail: [
+      "Image checked",
+      "AI result generated",
+      "Recommendation viewed",
+      "Shared with technician",
+    ],
+  },
+  {
+    id: "history-003",
+    date: "March 12, 2026",
+    possibleIssue: "No major visible issue detected",
+    confidence: 91,
+    riskLevel: "Low",
+    status: "Saved",
+    category: "Healthy",
+    explanation:
+      "RiceCare AI did not detect strong visible symptoms in this image.",
+    treatmentSummary: "No immediate treatment is suggested based on this image.",
+    preventionSummary: "Continue regular field monitoring.",
+    auditTrail: ["Image checked", "AI result generated", "Result saved"],
+  },
+];
