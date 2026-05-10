@@ -295,6 +295,97 @@
   padding: 0 22px 24px;
 }
 
+.settings-screen .screen-content,
+.help-screen .screen-content {
+  gap: 16px;
+  padding: 0 22px 112px;
+}
+
+.photo-guide-screen .screen-content,
+.review-screen .screen-content,
+.result-screen .screen-content {
+  gap: 16px;
+  padding: 0 22px 28px;
+}
+
+.settings-topbar,
+.guide-topbar {
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  margin: 0 -22px;
+  padding: 14px 22px 12px;
+  border-bottom: 1px solid #C7D5C3;
+  background: var(--main-background);
+}
+
+.settings-topbar h1,
+.guide-topbar h1 {
+  justify-self: center;
+  color: #0B6623;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.guide-brand {
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  margin: 0 -22px;
+  padding: 14px 22px 12px;
+  border-bottom: 1px solid #C7D5C3;
+}
+
+.guide-brand strong {
+  justify-self: center;
+  color: #0B6623;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.help-intro,
+.photo-guide-intro,
+.review-intro {
+  width: 100%;
+  max-width: 356px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.help-intro {
+  padding-top: 10px;
+}
+
+.help-intro h1,
+.photo-guide-intro h2,
+.review-intro h2 {
+  color: var(--text-dark);
+  font-size: 24px;
+  line-height: 1.12;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+.help-intro p,
+.photo-guide-intro p,
+.review-intro p {
+  max-width: 334px;
+  color: #424A42;
+  font-size: 15px;
+  line-height: 1.38;
+}
+
 .analyzing-brand {
   min-height: 72px;
   display: grid;

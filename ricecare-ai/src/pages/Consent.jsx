@@ -21,7 +21,7 @@ const items = [
 export default function Consent() {
   const navigate = useNavigate();
   const { setConsentAccepted } = useRiceCare();
-  const [checked, setChecked] = useState([true, true, true]);
+  const [checked, setChecked] = useState([false, false, false]);
   const accepted = useMemo(() => checked.every(Boolean), [checked]);
 
   const toggle = (index) => {
@@ -73,6 +73,7 @@ export default function Consent() {
 
       <ActionStack className="consent-actions">
         <Button onClick={continueToHome} disabled={!accepted}>I Agree and Continue</Button>
+        <Button to="/privacy-details" variant="secondary">Learn about privacy</Button>
       </ActionStack>
     </AppShell>
   );

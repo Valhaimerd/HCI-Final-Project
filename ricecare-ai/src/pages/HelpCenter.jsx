@@ -1,22 +1,23 @@
-import { ActionStack, AppShell, Button, Card, HelpCard } from "../components";
+import { Link } from "react-router-dom";
+import { AppShell, Icon } from "../components";
 
-const helpCards = [
+const guideCards = [
   {
     icon: "scan",
-    title: "How to Scan a Rice Plant",
-    summary: "Start a guided scan flow.",
+    title: "How to Scan",
+    summary: "Step-by-step guide for scanning rice plants.",
     to: "/scan",
   },
   {
     icon: "camera",
     title: "How to Take a Clear Photo",
-    summary: "Use better lighting and framing.",
+    summary: "Tips for better lighting, focus, and framing.",
     to: "/photo-guide",
   },
   {
-    icon: "help",
+    icon: "graph",
     title: "Understanding Your Result",
-    summary: "Learn what possible issue, confidence, and risk level mean.",
+    summary: "Learn confidence, risk level, and advisory notes.",
     to: "/help/understanding-ai-results",
   },
   {
@@ -26,45 +27,51 @@ const helpCards = [
     to: "/help/when-to-ask-technician",
   },
   {
-    icon: "leaf",
+    icon: "grass",
     title: "Common Rice Plant Problems",
-    summary: "Review common signs and when to ask for help.",
+    summary: "Review common symptoms and field issues.",
     to: "/common-problems",
   },
   {
-    icon: "privacy",
+    icon: "shieldwithlock",
     title: "Privacy and Image Use",
     summary: "Understand consent and saved records.",
     to: "/help/privacy-and-image-use",
-  },
-  {
-    icon: "information",
-    title: "Frequently Asked Questions",
-    summary: "Quick answers about RiceCare AI.",
-    to: "/help/frequently-asked-questions",
-  },
-  {
-    icon: "alert",
-    title: "Report App Problem",
-    summary: "Prototype support for reporting an issue.",
-    to: "/help/report-app-problem",
   },
 ];
 
 export default function HelpCenter() {
   return (
-    <AppShell title="Help Center">
-      <Card>
-        <h2>Learn and get support</h2>
-        <p>Learn how to scan rice plants, understand AI results, and know when to ask for technician support.</p>
-      </Card>
-      {helpCards.map((card) => (
-        <HelpCard key={card.title} {...card} />
-      ))}
-      <ActionStack>
-        <Button to="/technician-support">Ask Technician</Button>
-        <Button to="/home" variant="text">Back to Home</Button>
-      </ActionStack>
+    <AppShell className="help-screen">
+      <header className="guide-brand">
+        <Link to="/home" className="guide-logo" aria-label="Go home">
+          <Icon name="plant" size={24} />
+        </Link>
+        <strong>RiceCare AI</strong>
+        <span className="guide-help-badge">
+          <Icon name="help" size={25} />
+        </span>
+      </header>
+
+      <section className="help-intro">
+        <h1>Help and Farmer Guide</h1>
+        <p>Choose a guide to learn how to scan, understand results, or protect your information.</p>
+      </section>
+
+      <section className="help-guide-list" aria-label="Help topics">
+        {guideCards.map((card) => (
+          <Link to={card.to} className="help-guide-card" key={card.title}>
+            <span className="help-guide-icon">
+              <Icon name={card.icon} size={24} />
+            </span>
+            <span className="help-guide-copy">
+              <strong>{card.title}</strong>
+              <small>{card.summary}</small>
+            </span>
+            <span className="help-guide-arrow" aria-hidden="true">&gt;</span>
+          </Link>
+        ))}
+      </section>
     </AppShell>
   );
 }

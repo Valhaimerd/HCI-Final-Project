@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRiceCare } from "../App";
 import { AppShell, Button, Card, Icon } from "../components";
@@ -16,6 +16,7 @@ const modes = [
 export default function Scan() {
   const navigate = useNavigate();
   const fileInput = useRef(null);
+  const [flashOn, setFlashOn] = useState(false);
   const { setSelectedImage, analysisMode, setAnalysisMode } = useRiceCare();
 
   const simulatePhoto = () => {
@@ -58,7 +59,13 @@ export default function Scan() {
           <button className="scan-shutter-button" type="button" onClick={simulatePhoto} aria-label="Take photo">
             <Icon name="camera" size={30} />
           </button>
-          <button className="scan-control-button" type="button" aria-label="Toggle flash">
+          <button
+            className={`scan-control-button ${flashOn ? "active" : ""}`}
+            type="button"
+            onClick={() => setFlashOn((value) => !value)}
+            aria-pressed={flashOn}
+            aria-label="Toggle flash"
+          >
             <Icon name="lightning" size={28} />
           </button>
         </div>

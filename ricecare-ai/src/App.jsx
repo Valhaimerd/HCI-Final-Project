@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { mockAiResults } from "./data/mockAiResults";
 import { mockHistory } from "./data/mockHistory";
@@ -71,7 +71,7 @@ function AppProvider({ children }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [analysisMode, setAnalysisMode] = useState("random");
   const [currentAiResult, setCurrentAiResult] = useState(() =>
-    loadStorage("ricecare_current_result", mockAiResults[0])
+    loadStorage("ricecare_current_result", mockAiResults[0]) || mockAiResults[0]
   );
   const [savedResults, setSavedResults] = useState(() =>
     loadStorage("ricecare_saved_results", [])
@@ -103,53 +103,75 @@ function AppProvider({ children }) {
     })
   );
 
-  useEffect(() => saveStorage("ricecare_consent", consentAccepted), [consentAccepted]);
-  useEffect(() => saveStorage("ricecare_current_result", currentAiResult), [currentAiResult]);
-  useEffect(() => saveStorage("ricecare_saved_results", savedResults), [savedResults]);
-  useEffect(() => saveStorage("ricecare_deleted_result_ids", deletedResultIds), [deletedResultIds]);
-  useEffect(() => saveStorage("ricecare_review_requests", reviewRequests), [reviewRequests]);
-  useEffect(() => saveStorage("ricecare_last_review", lastReview), [lastReview]);
-  useEffect(() => saveStorage("ricecare_accessibility_settings", settings), [settings]);
-  useEffect(() => saveStorage("ricecare_consent_settings", consentSettings), [consentSettings]);
+  useEffect(() => {
+    saveStorage("ricecare_consent", consentAccepted);
+  }, [consentAccepted]);
+  useEffect(() => {
+    saveStorage("ricecare_current_result", currentAiResult);
+  }, [currentAiResult]);
+  useEffect(() => {
+    saveStorage("ricecare_saved_results", savedResults);
+  }, [savedResults]);
+  useEffect(() => {
+    saveStorage("ricecare_deleted_result_ids", deletedResultIds);
+  }, [deletedResultIds]);
+  useEffect(() => {
+    saveStorage("ricecare_review_requests", reviewRequests);
+  }, [reviewRequests]);
+  useEffect(() => {
+    saveStorage("ricecare_last_review", lastReview);
+  }, [lastReview]);
+  useEffect(() => {
+    saveStorage("ricecare_accessibility_settings", settings);
+  }, [settings]);
+  useEffect(() => {
+    saveStorage("ricecare_consent_settings", consentSettings);
+  }, [consentSettings]);
 
   const historyItems = (savedResults.length ? savedResults : mockHistory).filter(
     (item) => !deletedResultIds.includes(item.id)
   );
+  const activeAiResult = currentAiResult || mockAiResults[0];
 
-  const runMockAnalysis = () => {
+  const runMockAnalysis = useCallback(() => {
     const result = getMockAiResult(analysisMode);
     setCurrentAiResult(result);
     return result;
-  };
+  }, [analysisMode]);
 
-  const saveCurrentResult = () => {
-    const record = buildSavedRecord(currentAiResult, "Saved");
+  const saveCurrentResult = useCallback(() => {
+    const record = buildSavedRecord(activeAiResult, "Saved");
     setSavedResults((items) => [record, ...items]);
     setDeletedResultIds((items) => items.filter((id) => id !== record.id));
     return record;
-  };
+  }, [activeAiResult]);
 
-  const shareCurrentResult = () => {
-    const record = buildSavedRecord(currentAiResult, "Under Review");
+  const shareCurrentResult = useCallback(() => {
+    const record = buildSavedRecord(activeAiResult, "Under Review");
     setSavedResults((items) => [record, ...items]);
     return record;
-  };
+  }, [activeAiResult]);
 
-  const deleteResult = (id) => {
+  const deleteResult = useCallback((id) => {
     setSavedResults((items) => items.filter((item) => item.id !== id));
     setDeletedResultIds((items) => (items.includes(id) ? items : [...items, id]));
-  };
+  }, []);
 
-  const submitReview = (payload, source = "Technician Review") => {
+  const clearSavedHistory = useCallback(() => {
+    setSavedResults([]);
+    setDeletedResultIds(mockHistory.map((item) => item.id));
+  }, []);
+
+  const submitReview = useCallback((payload, source = "Technician Review") => {
     const request = {
       id: `review-${Date.now()}`,
       farmerName: payload.farmerName || "Sample Farmer",
       location: payload.location || "Barangay Sample",
       description: payload.description || payload.observation || "Farmer requested human confirmation.",
       contactNumber: payload.contactNumber || "",
-      submittedResult: currentAiResult.possibleIssue,
-      confidence: currentAiResult.confidence,
-      riskLevel: currentAiResult.riskLevel,
+      submittedResult: activeAiResult.possibleIssue,
+      confidence: activeAiResult.confidence,
+      riskLevel: activeAiResult.riskLevel,
       status: "Under Review",
       source,
       submittedAt: formatDateTime(),
@@ -163,11 +185,13 @@ function AppProvider({ children }) {
     setLastReview(request);
     shareCurrentResult();
     return request;
-  };
+  }, [activeAiResult, shareCurrentResult]);
 
-  const updateSettings = (patch) => setSettings((value) => ({ ...value, ...patch }));
-  const updateConsentSettings = (patch) =>
-    setConsentSettings((value) => ({ ...value, ...patch }));
+  const updateSettings = useCallback((patch) => setSettings((value) => ({ ...value, ...patch })), []);
+  const updateConsentSettings = useCallback(
+    (patch) => setConsentSettings((value) => ({ ...value, ...patch })),
+    []
+  );
 
   const value = useMemo(
     () => ({
@@ -177,7 +201,7 @@ function AppProvider({ children }) {
       setSelectedImage,
       analysisMode,
       setAnalysisMode,
-      currentAiResult,
+      currentAiResult: activeAiResult,
       setCurrentAiResult,
       runMockAnalysis,
       savedResults,
@@ -185,6 +209,7 @@ function AppProvider({ children }) {
       saveCurrentResult,
       shareCurrentResult,
       deleteResult,
+      clearSavedHistory,
       reviewRequests,
       lastReview,
       submitReview,
@@ -197,10 +222,18 @@ function AppProvider({ children }) {
       consentAccepted,
       selectedImage,
       analysisMode,
-      currentAiResult,
+      activeAiResult,
       savedResults,
       deletedResultIds,
       historyItems,
+      runMockAnalysis,
+      saveCurrentResult,
+      shareCurrentResult,
+      deleteResult,
+      clearSavedHistory,
+      submitReview,
+      updateSettings,
+      updateConsentSettings,
       reviewRequests,
       lastReview,
       settings,
