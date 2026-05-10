@@ -1,19 +1,24 @@
 # HCI Farm
 
-Static site prepared for GitHub Pages.
+Static deployment shell prepared for GitHub Pages and Netlify.
 
 ## Local preview
 
-Open `index.html` directly in a browser, or run a simple local server:
+Open `site/index.html` directly in a browser, or run a simple local server:
 
 ```powershell
-python -m http.server 8000
+python -m http.server 8000 -d site
 ```
 
 Then visit `http://localhost:8000`.
 
-## GitHub Pages deployment
+## Deployment
 
-This repository includes `.github/workflows/pages.yml`, which publishes the repository root to GitHub Pages whenever changes are pushed to `master`.
+This repository includes:
 
-In the GitHub repository settings, set **Pages > Source** to **GitHub Actions** if it is not already selected.
+- `.github/workflows/pages.yml` for GitHub Pages
+- `netlify.toml` for Netlify
+
+Both publish the `site/` folder. In GitHub, set **Pages > Source** to **GitHub Actions** if it is not already selected.
+
+See `IMPLEMENTATION_READINESS.md` before building the mock deployed system.
