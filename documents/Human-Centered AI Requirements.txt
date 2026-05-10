@@ -1,0 +1,1009 @@
+Below is **Document 6 of 7: Human-Centered AI Requirements** for Codex. This focuses on the HCAI features required by the IT58 instructions: explainability, human override, privacy/consent, bias/risk awareness, accessibility, governance, and audit trail. These must appear directly in the prototype UI, not only in documentation.   
+
+````markdown
+# Document 6: Human-Centered AI Requirements for Codex
+
+## Project
+
+RiceCare AI  
+Pest and Disease Advisory for Rice Farmers
+
+## Purpose of This Document
+
+This document defines the Human-Centered AI requirements for the RiceCare AI prototype.
+
+Codex must build the prototype so that Human-Centered AI principles are visible in the actual app screens.
+
+The app must not only look good. It must clearly show:
+
+- Explainability
+- Human control
+- Human override and appeal
+- Privacy and consent
+- Bias and risk awareness
+- Accessibility
+- Governance and audit trail
+- Safe advisory language
+
+These requirements are important because RiceCare AI is not just a normal mobile app. It is an AI decision-support prototype for rice farmers.
+
+---
+
+# 1. Main Human-Centered AI Rule
+
+RiceCare AI must support the farmer. It must not replace the farmer or the agricultural technician.
+
+The AI must only suggest possible pest or disease issues.
+
+The app must always communicate that:
+
+```text
+RiceCare AI provides advisory support only. It is not a final expert diagnosis.
+````
+
+The user must always have control over what happens next.
+
+---
+
+# 2. AI Autonomy Level
+
+RiceCare AI should behave as a low-autonomy advisory system.
+
+The AI can:
+
+```text
+Analyze a plant image using mock logic
+Suggest a possible issue
+Show confidence score
+Show risk level
+Explain visible symptoms
+Suggest recommended actions
+Recommend technician review
+```
+
+The AI must not:
+
+```text
+Make a final diagnosis
+Force treatment action
+Automatically apply decisions
+Tell the farmer to use chemicals immediately
+Hide uncertainty
+Remove user control
+Replace technician confirmation
+```
+
+The correct behavior is:
+
+```text
+AI suggests.
+Farmer reviews.
+Technician confirmation is available.
+Farmer decides the next action.
+```
+
+---
+
+# 3. Explainability Requirements
+
+## Goal
+
+The user must understand why the AI gave a result.
+
+The result screen must not only show a disease or pest name. It must explain the basis of the suggestion.
+
+## Required UI Elements
+
+The AI Result screen must show:
+
+```text
+Possible Issue
+Confidence Score
+Risk Level
+Category: Disease / Pest / Healthy / Needs Review
+Image preview
+Detected symptom areas
+Why this result?
+Detected symptoms list
+Alternative possible results
+Advisory disclaimer
+Risk awareness note
+```
+
+## Required Explanation Pattern
+
+Use this structure:
+
+```text
+Possible Issue: Rice Blast Disease
+Confidence: 86%
+Risk Level: High
+
+Why this result?
+The AI detected leaf spots, irregular brown lesions, and damaged leaf areas that may match symptoms of Rice Blast.
+```
+
+## Required Detected Symptoms Section
+
+Show symptoms as short readable items.
+
+Example:
+
+```text
+Detected symptoms:
+- Leaf spots
+- Irregular brown lesions
+- Damaged leaf areas
+```
+
+## Required Alternative Results Section
+
+Show top alternatives.
+
+Example:
+
+```text
+Other possible matches:
+- Brown Spot — 9%
+- Bacterial Leaf Blight — 4%
+- Healthy Plant — 1%
+```
+
+## Important Rule
+
+Do not make the result look final.
+
+Use:
+
+```text
+Possible Issue
+May match symptoms
+Advisory result
+Other possible matches
+Ask technician for confirmation
+```
+
+Avoid:
+
+```text
+Confirmed Disease
+Final Diagnosis
+The AI is sure
+Treatment required
+```
+
+---
+
+# 4. Confidence Score Requirements
+
+## Goal
+
+The confidence score must help the user understand uncertainty.
+
+## Required Display
+
+Show confidence as:
+
+```text
+86% Confidence
+```
+
+Use a progress bar or circular indicator.
+
+## Confidence Interpretation
+
+Use these rules:
+
+```text
+85–100%: High confidence
+70–84%: Moderate confidence
+50–69%: Low confidence
+Below 50%: Uncertain / Needs Review
+```
+
+## Required Caution Text
+
+Even when confidence is high, show:
+
+```text
+A high confidence score does not mean the result is always final.
+```
+
+## Low Confidence Behavior
+
+If confidence is low or uncertain:
+
+The result screen must say:
+
+```text
+The image does not clearly match one known pest or disease. Please retake the photo or ask a technician for confirmation.
+```
+
+Primary actions should become:
+
+```text
+Retake Photo
+Ask Technician
+```
+
+Do not make “View Recommendations” the only strong action for low-confidence results.
+
+---
+
+# 5. Risk Level Requirements
+
+## Goal
+
+Risk level should help the farmer know how urgent the issue may be.
+
+## Required Risk Levels
+
+Use these labels:
+
+```text
+Low Risk
+Medium Risk
+High Risk
+Needs Review
+```
+
+## Risk Behavior
+
+### Low Risk
+
+Use for healthy or minor advisory result.
+
+Message:
+
+```text
+Continue regular field monitoring.
+```
+
+### Medium Risk
+
+Use for possible pest damage or moderate disease concern.
+
+Message:
+
+```text
+Monitor the affected plants and ask a technician if symptoms spread.
+```
+
+### High Risk
+
+Use for serious disease-like symptoms.
+
+Message:
+
+```text
+Ask a technician before applying chemical treatment, especially when many plants are affected.
+```
+
+### Needs Review
+
+Use for uncertain result.
+
+Message:
+
+```text
+The result is unclear. Retake the photo or ask a technician before taking action.
+```
+
+## Important Rule
+
+Risk level must never pressure the user into unsafe action.
+
+Do not say:
+
+```text
+Apply fungicide now.
+Use pesticide immediately.
+Disease confirmed.
+```
+
+Use safer wording:
+
+```text
+Consult an agricultural technician before applying chemical treatment.
+```
+
+---
+
+# 6. Human Override Requirements
+
+## Goal
+
+The farmer must always be able to disagree with the AI.
+
+## Required Actions on AI Result Screen
+
+Every AI result screen must include:
+
+```text
+View Recommendations
+Ask Technician
+Report Wrong Result
+Retake Photo
+```
+
+For low-confidence result, prioritize:
+
+```text
+Retake Photo
+Ask Technician
+```
+
+For healthy result, include:
+
+```text
+Save Result
+Scan Another Plant
+Ask Technician if Needed
+```
+
+## Required Human Override Flow
+
+```text
+AI Result
+→ Ask Technician
+→ Technician Support Form
+→ Review Submitted
+→ Review Status
+```
+
+## Required Report Wrong Result Flow
+
+```text
+AI Result
+→ Report Wrong Result
+→ Submit Report
+→ Review Submitted
+```
+
+## Required Wording
+
+Use:
+
+```text
+If you think the AI result is incorrect or uncertain, you can request help from an agricultural technician.
+```
+
+Also use:
+
+```text
+Human review helps avoid relying only on AI.
+```
+
+## Important Rule
+
+Do not hide the override options below too much content. They must be easy to find.
+
+---
+
+# 7. Appeal and Error Reporting Requirements
+
+## Goal
+
+The user must be able to challenge the AI result.
+
+## Required Report Wrong Result Screen
+
+The screen must include:
+
+```text
+Title: Report Wrong Result
+
+Text:
+Tell us why the result seems incorrect. This helps improve review and future advisory support.
+```
+
+Required fields:
+
+```text
+What seems wrong?
+What did you observe in the field?
+Location / Barangay optional
+```
+
+Required actions:
+
+```text
+Submit Report
+Ask Technician Instead
+Back to Result
+```
+
+## Required Submitted State
+
+After reporting, show:
+
+```text
+Your request has been submitted for technician review.
+```
+
+Status:
+
+```text
+Under Review
+```
+
+## Important Rule
+
+The report flow should not blame the user or make the user feel wrong for questioning the AI.
+
+Use calm wording.
+
+---
+
+# 8. Privacy and Consent Requirements
+
+## Goal
+
+The app must ask permission before using plant images.
+
+## Required Consent Screen
+
+The consent screen must appear before the user reaches the main app.
+
+Required title:
+
+```text
+Before You Start
+```
+
+Required explanation:
+
+```text
+RiceCare AI analyzes plant images to suggest possible pest or disease problems. Your image is used only for analysis and advisory support.
+```
+
+Required consent checklist:
+
+```text
+I understand this is advisory support, not a final expert diagnosis.
+I allow the system to analyze the uploaded plant image.
+I understand I can ask a technician for confirmation.
+```
+
+Required actions:
+
+```text
+I Agree and Continue
+Learn about privacy
+```
+
+## Required Behavior
+
+The continue button should appear disabled until consent is accepted.
+
+This can be simulated with React state.
+
+## Required Privacy Details
+
+The app should explain:
+
+```text
+How your image is used
+What is saved
+Optional sharing with technician
+Deleting saved scan history
+Advisory limitation
+```
+
+## Required Manage Consent Screen
+
+The settings section must include Manage Consent.
+
+Consent options:
+
+```text
+Allow image analysis
+Save scan results
+Allow technician sharing
+Allow anonymized image use for improvement
+```
+
+## Important Rule
+
+Optional sharing must not look forced.
+
+Use this note:
+
+```text
+You can use advisory analysis without allowing optional data sharing.
+```
+
+---
+
+# 9. Data Minimization Requirements
+
+## Goal
+
+The prototype should show that only necessary information is collected.
+
+## Required Behavior
+
+Do not ask for unnecessary personal information.
+
+Technician support form may ask for:
+
+```text
+Farmer Name
+Location / Barangay
+Short Description of Problem
+Contact Number optional
+```
+
+Do not ask for:
+
+```text
+Exact home address
+Government ID
+Password
+Payment information
+Sensitive personal details
+```
+
+## Required Privacy Wording
+
+Use:
+
+```text
+Plant images are used for advisory analysis. Saved results can be deleted by the user.
+```
+
+Use:
+
+```text
+Contact number is optional and only used if a technician needs more information.
+```
+
+---
+
+# 10. Bias and Risk Awareness Requirements
+
+## Goal
+
+The app must explain that AI accuracy can be affected by real-world conditions.
+
+## Required Risk Awareness Note
+
+Use this note where appropriate:
+
+```text
+Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.
+```
+
+Place this note on:
+
+```text
+Consent screen
+Scan screen
+Image preview screen
+AI result screen
+Help article
+About screen
+```
+
+## Required Poor Image Warning
+
+If the image may be unclear, show:
+
+```text
+This photo may be too blurry, dark, or far from the affected plant area.
+```
+
+Actions:
+
+```text
+Retake Photo
+View Photo Guide
+Continue Anyway
+```
+
+## Required Unknown / Uncertain Handling
+
+For uncertain results:
+
+```text
+The image does not clearly match one known pest or disease.
+```
+
+Then recommend:
+
+```text
+Retake the photo.
+Ask a technician.
+Do not take treatment action yet.
+```
+
+## Important Rule
+
+Do not force a known disease label when the result is uncertain.
+
+---
+
+# 11. Accessibility Requirements
+
+## Goal
+
+The app must be usable for farmers with low digital literacy and different accessibility needs.
+
+## Required Accessibility Features
+
+The Settings screen must include:
+
+```text
+Text Size: Normal / Large
+Language: English / Filipino / Local Language
+Voice Guidance: On / Off
+High Contrast Mode: On / Off
+Simple Mode: On / Off
+```
+
+## Required Visual Behavior
+
+Large Text:
+
+```text
+Increase readable text size.
+Increase button text slightly.
+Keep layout usable.
+```
+
+High Contrast Mode:
+
+```text
+Make text darker.
+Make borders stronger.
+Improve contrast between cards and background.
+```
+
+Voice Guidance:
+
+```text
+Toggle should switch on/off.
+No real audio is required unless easy to implement.
+```
+
+Simple Mode:
+
+```text
+Reduce non-essential helper text.
+Keep warnings and safety notes visible.
+```
+
+Language:
+
+```text
+Allow selection, but full translation is not required for the prototype.
+```
+
+## Accessibility Design Rules
+
+Codex must ensure:
+
+```text
+Buttons are large enough to tap.
+Important text is not too small.
+Color is not the only way to show meaning.
+Risk labels include words, not only colors.
+Icons have text labels.
+Screens are scrollable when needed.
+```
+
+---
+
+# 12. Governance and Audit Trail Requirements
+
+## Goal
+
+The app must show that AI results can be tracked for review and accountability.
+
+## Required Audit Events
+
+Use simple audit events such as:
+
+```text
+Image selected
+Image checked
+Poor image warning shown
+AI result generated
+Low confidence warning shown
+Recommendation viewed
+Result saved
+Shared with technician
+Technician review requested
+Wrong result reported
+Saved result deleted
+Consent accepted
+Consent settings updated
+```
+
+## Required Screens with Audit Trail
+
+Audit information must appear on:
+
+```text
+History and Audit Log
+Result Details
+Review Status
+```
+
+## Required History Card Data
+
+Each saved result should show:
+
+```text
+Date
+Possible Issue
+Confidence
+Risk Level
+Status
+View Details
+```
+
+## Required Result Details Audit Section
+
+Example:
+
+```text
+Audit Detail:
+- Image uploaded
+- AI analysis completed
+- Result viewed
+- Recommendation opened
+- Technician review requested
+```
+
+## Important Rule
+
+The audit trail should be understandable to farmers and evaluators. Do not make it look like developer logs.
+
+---
+
+# 13. Technician Review Requirements
+
+## Goal
+
+The app must show that human confirmation is available.
+
+## Required Technician Support Screen
+
+Required title:
+
+```text
+Need Human Confirmation?
+```
+
+Required explanation:
+
+```text
+If you think the AI result is incorrect or uncertain, you can request help from an agricultural technician.
+```
+
+Required AI summary card:
+
+```text
+Possible Issue
+Confidence
+Risk Level
+Status: Needs confirmation
+```
+
+Required form fields:
+
+```text
+Farmer Name
+Location / Barangay
+Short Description of Problem
+Contact Number optional
+```
+
+Required button:
+
+```text
+Submit for Review
+```
+
+## Required Review Submitted Screen
+
+Show:
+
+```text
+Your request has been submitted for technician review.
+```
+
+Status timeline:
+
+```text
+Request Submitted — Completed
+Technician Review — In Progress
+Recommendation Update — Pending
+```
+
+## Important Rule
+
+Technician review is simulated only. Do not connect real messaging, SMS, email, or backend.
+
+---
+
+# 14. Safe Advisory Language Requirements
+
+## Goal
+
+The app must avoid unsafe or overconfident advice.
+
+## Use These Words
+
+```text
+Possible issue
+May match symptoms
+Advisory support
+Ask technician
+Human confirmation
+Risk level
+Confidence score
+Recommended practice
+Prevention tips
+```
+
+## Avoid These Words
+
+```text
+Confirmed diagnosis
+Guaranteed result
+The AI is sure
+Apply chemical now
+Treatment required immediately
+Final expert result
+```
+
+## Required Chemical Treatment Warning
+
+Whenever chemical treatment or fungicide/pesticide is mentioned, include:
+
+```text
+Ask a technician before applying chemical treatment, especially when many plants are affected.
+```
+
+## Healthy Result Safety Language
+
+Do not say:
+
+```text
+Your plant is completely healthy.
+```
+
+Use:
+
+```text
+RiceCare AI did not detect strong visible symptoms in this image. Continue regular field monitoring.
+```
+
+---
+
+# 15. Help and Education Requirements
+
+## Goal
+
+The app must help farmers understand how to use AI results.
+
+## Required Help Center Topics
+
+Include help cards for:
+
+```text
+How to Scan a Rice Plant
+How to Take a Clear Photo
+Understanding Your Result
+When to Ask a Technician
+Common Rice Plant Problems
+Privacy and Image Use
+Frequently Asked Questions
+Report App Problem
+```
+
+## Required Understanding AI Results Article
+
+Must explain:
+
+```text
+Possible Issue
+Confidence Score
+Risk Level
+Why this result?
+When to Ask a Technician
+```
+
+## Required Help Warning
+
+Use:
+
+```text
+RiceCare AI provides advisory support only. It is not a final expert diagnosis.
+```
+
+---
+
+# 16. Human-Centered AI Screen Mapping
+
+Codex must ensure that each HCAI requirement appears in the UI.
+
+| HCAI Requirement       | Where It Must Appear                      |
+| ---------------------- | ----------------------------------------- |
+| Explainability         | AI Result, Result Details, Help Article   |
+| Confidence             | AI Result, Result Details, History        |
+| Risk Level             | AI Result, Recommendations, History       |
+| Human Override         | AI Result, Technician Support             |
+| Appeal                 | Report Wrong Result                       |
+| Privacy and Consent    | Consent, Privacy Details, Manage Consent  |
+| Bias/Risk Awareness    | Scan, Poor Image Warning, AI Result, Help |
+| Accessibility          | Settings                                  |
+| Governance             | History, Audit Trail, Result Details      |
+| Safe Advisory Language | Result, Recommendations, About, Help      |
+
+---
+
+# 17. Required Prototype Evidence for Final Submission
+
+The prototype should produce screens that can be used as screenshots for the final PDF.
+
+Important screenshot candidates:
+
+```text
+Welcome screen
+Consent/privacy screen
+Home dashboard
+Scan screen
+AI result with explainability
+Recommendation screen
+Technician support screen
+History and audit log
+Accessibility/settings screen
+Help article
+```
+
+The final PDF will need embedded screenshots and a clickable deployed prototype link.
+
+---
+
+# 18. Acceptance Checklist
+
+Codex must verify:
+
+```text
+The app clearly says AI is advisory only.
+The consent screen appears before main app use.
+The result screen explains why the AI suggested the result.
+Confidence score is visible.
+Risk level is visible.
+Alternative possible results are visible.
+User can retake photo.
+User can ask technician.
+User can report wrong result.
+User can save and delete results.
+History includes audit trail.
+Settings include accessibility controls.
+High contrast mode visibly changes UI.
+Large text mode visibly changes UI.
+Privacy settings are available.
+Low confidence results recommend retake or technician review.
+High risk results include safety warning.
+Chemical treatment advice includes technician warning.
+No screen claims final diagnosis.
+No screen removes farmer control.
+No real backend or AI dependency is added.
+```
+
+---
+
+# 19. Final Rule
+
+RiceCare AI must be designed as a Human-Centered AI advisory tool.
+
+The prototype should make the AI useful, but also limited, explainable, contestable, privacy-aware, accessible, and accountable.
+
+The farmer remains the final decision-maker.
+
+```

@@ -1,0 +1,405 @@
+# Document 1: Master Project Brief for Codex
+
+## Project Name
+
+RiceCare AI
+
+## Project Subtitle
+
+Pest and Disease Advisory for Rice Farmers
+
+## Project Type
+
+Human-Centered AI Mobile Prototype  
+Decision Support / Advisory / Assistive AI
+
+## Main Goal
+
+Build a polished mobile-first web prototype for RiceCare AI.
+
+RiceCare AI is an AI-assisted advisory app for rice farmers. The app helps farmers check possible rice plant pests and diseases by allowing them to take or upload a rice plant image. The system then gives an advisory result with a possible issue, confidence score, risk level, explanation, recommendations, and user-control options.
+
+The app must clearly show that the AI is only for decision support. It must not act like a final expert diagnosis. The farmer must always remain in control.
+
+## Target Users
+
+The prototype must be designed for these users:
+
+1. Small-scale rice farmers  
+   These are the main users. They may have limited access to agricultural experts, limited technical skills, and need fast, clear, practical crop-health advice.
+
+2. Agricultural technicians and extension workers  
+   They help verify unclear cases, confirm possible pest or disease issues, and guide farmers on the proper next steps.
+
+3. Farm cooperatives and agricultural organizations  
+   They may help support rice farmers, review crop-health records, and coordinate assistance.
+
+## Problem Statement
+
+Rice farmers often experience crop damage caused by pests and diseases. These problems can spread quickly and reduce harvest yield. Many rural farmers cannot immediately ask agricultural experts for help, so crop-health problems may be identified late or treated incorrectly.
+
+RiceCare AI addresses this problem by giving farmers a simple mobile advisory tool that can analyze a plant image, suggest possible crop-health issues, explain the result, and recommend safe next steps.
+
+## Core Solution
+
+Create a mobile web app prototype where the farmer can:
+
+1. Open the app.
+2. Read and accept privacy and advisory consent.
+3. Scan or upload a rice plant image.
+4. Receive a mock AI analysis result.
+5. View confidence score, risk level, explanation, and detected symptoms.
+6. View recommended treatment and prevention steps.
+7. Save the result.
+8. Ask a technician for confirmation.
+9. Report a wrong result.
+10. Review saved history and audit trail.
+11. Adjust accessibility and privacy settings.
+12. Read help articles about using the app and understanding AI results.
+
+## Important Instruction About AI
+
+This project should use mock AI logic only.
+
+Do not build a real machine learning model unless specifically requested later.
+
+The prototype should simulate AI behavior using predefined sample results such as:
+
+- Rice Blast Disease
+- Brown Spot
+- Bacterial Leaf Blight
+- Pest Damage
+- Healthy Plant
+- Uncertain / Low Confidence Result
+
+The app may randomly select or use preset sample results when the user clicks “Analyze Image.”
+
+## Human-Centered AI Requirements
+
+RiceCare AI must clearly demonstrate Human-Centered AI principles.
+
+The app must include:
+
+### 1. Explainability
+
+The result screen must not only show the diagnosis. It must explain why the AI suggested that result.
+
+The result should include:
+
+- Possible issue
+- Confidence score
+- Risk level
+- Detected symptoms
+- Simple explanation
+- Alternative possible results
+- Image preview with highlighted symptom areas
+- Advisory disclaimer
+
+### 2. Human Control
+
+The AI must not make final decisions for the farmer.
+
+The user must always have options to:
+
+- Retake photo
+- View recommendations
+- Ask technician
+- Report wrong result
+- Save result
+- Delete saved result
+- Go back or cancel
+
+### 3. Privacy and Consent
+
+Before image analysis, the app must show a consent screen.
+
+The consent screen must explain:
+
+- The app uses plant images for advisory analysis.
+- The AI result is not a final diagnosis.
+- The user can ask a technician for confirmation.
+- Saved results and privacy settings can be managed later.
+
+### 4. Bias and Risk Awareness
+
+The app must explain that AI accuracy may be affected by:
+
+- Poor image quality
+- Lighting
+- Crop variety
+- Local field conditions
+- Similar-looking symptoms
+- Unknown diseases or pests
+
+Low-confidence results should suggest retaking the photo or asking a technician.
+
+### 5. Accessibility
+
+The app should be usable by farmers with low digital literacy.
+
+Include accessibility-related features such as:
+
+- Large readable text
+- Simple labels
+- High contrast mode
+- Text size setting
+- Voice guidance toggle
+- Simple mode toggle
+- Local language option placeholder
+
+### 6. Governance and Audit Trail
+
+The app should include saved result history and an audit trail.
+
+Audit records may include:
+
+- Image checked
+- AI result generated
+- Recommendation viewed
+- Result saved
+- Technician review requested
+- Result deleted
+
+This is only a prototype, so the audit trail can be simulated through static or local mock data.
+
+## Required App Tone
+
+The app must feel:
+
+- Helpful
+- Practical
+- Calm
+- Trustworthy
+- Farmer-friendly
+- Agriculture-focused
+
+Avoid making the app feel like:
+
+- A social media app
+- A chatbot-only app
+- A futuristic sci-fi AI system
+- A complex professional dashboard
+- A hospital or medical diagnosis system
+
+Use simple, direct wording.
+
+Avoid technical machine learning terms on farmer-facing screens. For example, do not say “CNN classification pipeline” on the actual user interface. Instead, say “RiceCare AI is checking the plant image.”
+
+## Required Advisory Disclaimer
+
+Use this disclaimer where appropriate:
+
+“RiceCare AI provides advisory support only. It is not a final expert diagnosis.”
+
+## Required Risk Awareness Note
+
+Use this note where appropriate:
+
+“Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.”
+
+## Prototype Platform
+
+Build this as a static web prototype.
+
+Preferred technical direction:
+
+- React + Vite
+- Mobile-first responsive layout
+- Local mock data
+- No backend
+- No database
+- No authentication
+- No real AI API
+- Deployable to Netlify
+- Compatible with GitHub repository workflow
+- Optional GitHub Pages compatibility if configured later
+
+## Deployment Goal
+
+The finished prototype must be deployable online.
+
+Primary deployment target:
+
+Netlify
+
+Source code should be stored in:
+
+GitHub repository
+
+The final deployed URL will later be placed inside the project PDF as the clickable prototype link.
+
+## Main Product Scope
+
+The prototype should include the following major sections:
+
+1. Welcome and consent
+2. Home dashboard
+3. Scan/upload image flow
+4. Image quality guide
+5. Mock AI analysis loading
+6. AI result screens
+7. Recommendation screens
+8. Technician review and report flow
+9. History and audit log
+10. Result details
+11. Help center and help articles
+12. Accessibility settings
+13. Privacy settings
+14. About app
+
+The final screen count is not limited to 15. Use as many screens, modal states, and conditional views as needed to make the prototype complete and realistic.
+
+## Main User Journey
+
+The main user journey should be:
+
+Welcome Screen  
+→ Privacy and Consent  
+→ Home Dashboard  
+→ Scan Rice Plant  
+→ Upload or Take Photo  
+→ Analyze Image  
+→ AI Analysis Loading  
+→ AI Result  
+→ View Recommendations  
+→ Save Result or Ask Technician  
+→ History / Audit Log
+
+## Alternative User Journeys
+
+The app should also support these flows:
+
+### Poor Image Flow
+
+Scan Rice Plant  
+→ Poor Image Warning  
+→ Retake Photo  
+→ Analyze Again
+
+### Low Confidence Flow
+
+AI Result  
+→ Low Confidence Warning  
+→ Retake Photo or Ask Technician
+
+### Human Review Flow
+
+AI Result  
+→ Ask Technician  
+→ Fill Review Form  
+→ Submit for Review  
+→ Review Status
+
+### Report Wrong Result Flow
+
+AI Result  
+→ Report Wrong Result  
+→ Submit Explanation  
+→ Review Submitted
+
+### Saved Result Flow
+
+History  
+→ Result Details  
+→ Share with Technician / Delete Result / Back to History
+
+### Help Flow
+
+Help Center  
+→ Understanding AI Results  
+→ Ask Technician or Back to Help
+
+### Settings Flow
+
+Settings  
+→ Accessibility Settings  
+→ Privacy and Consent Management  
+→ Save Settings
+
+## Content Style
+
+Use short, simple, farmer-friendly text.
+
+Good examples:
+
+- “Scan Rice Plant”
+- “Take a clear photo of the affected leaf or stem.”
+- “The result is only a suggestion.”
+- “Ask a technician before applying chemical treatment.”
+- “Image quality affects AI accuracy.”
+
+Avoid complex wording such as:
+
+- “Convolutional neural network inference completed.”
+- “Multiclass classification probability distribution.”
+- “Autonomous decision execution.”
+- “Model interpretability pipeline.”
+
+## Non-Goals
+
+Do not build these unless requested later:
+
+- Real AI model
+- Real CNN training
+- Backend server
+- User login
+- Database
+- Payment system
+- Real technician messaging
+- Real SMS/email sending
+- Admin dashboard
+- Production-level farm management system
+
+This is a class prototype, not a production agriculture platform.
+
+## Expected Final Output
+
+The final output should be a complete mobile web prototype that looks polished and consistent.
+
+It should include:
+
+- Working navigation
+- Clickable buttons
+- Mock image analysis flow
+- Mock AI results
+- Recommendations
+- Technician review flow
+- Report wrong result flow
+- History and audit trail
+- Help center
+- Accessibility settings
+- Privacy settings
+- Mobile-first UI
+- Netlify-ready build
+
+## Quality Standard
+
+The app must look like one complete system.
+
+Do not create random disconnected screens.
+
+Every page should use the same:
+
+- App identity
+- Color palette
+- Button style
+- Header style
+- Card style
+- Typography
+- Bottom navigation
+- Tone of writing
+
+## Success Criteria
+
+The prototype is successful if:
+
+1. A farmer can understand what the app is for within the first screen.
+2. The consent screen clearly explains privacy and advisory limitations.
+3. The scan flow feels simple and realistic.
+4. The AI result screen explains the result instead of only showing a label.
+5. The user can reject, report, retake, or ask a technician.
+6. The recommendations are practical and easy to read.
+7. Saved results and audit trail are visible.
+8. Accessibility options are present.
+9. The interface is mobile-friendly and not cramped.
+10. The app can be deployed successfully through Netlify.

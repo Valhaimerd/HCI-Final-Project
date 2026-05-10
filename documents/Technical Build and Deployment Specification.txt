@@ -1,0 +1,694 @@
+Below is **Document 2 of 7: Technical Build and Deployment Specification** for Codex. This keeps the build practical: a static mobile prototype with mock AI logic, deployable through Netlify, with GitHub used as the source repository. The final deliverable requires a clickable prototype link inside the PDF, so deployment is part of the project requirement. 
+
+````markdown
+# Document 2: Technical Build and Deployment Specification for Codex
+
+## Project
+
+RiceCare AI  
+Pest and Disease Advisory for Rice Farmers
+
+## Purpose of This Document
+
+This document tells Codex how to build and deploy the RiceCare AI prototype.
+
+The goal is to create a polished mobile-first web prototype that can be pushed to GitHub and deployed to Netlify.
+
+This is a class prototype. Build it as a static front-end application with mock AI behavior.
+
+Do not build a real AI model, backend, database, login system, or admin panel unless requested later.
+
+---
+
+# 1. Recommended Technical Stack
+
+Use the following stack:
+
+- React
+- Vite
+- JavaScript
+- CSS Modules or plain CSS
+- React Router
+- Local mock data
+- Local state using React hooks
+- Netlify for deployment
+- GitHub for source code hosting
+
+Do not use TypeScript unless specifically requested.
+
+Do not use a backend server.
+
+Do not use Firebase, Supabase, MongoDB, Express, Flask, Django, Laravel, or any database.
+
+Do not connect to a real AI API.
+
+---
+
+# 2. Application Type
+
+Build RiceCare AI as a static mobile web prototype.
+
+The prototype should work in a browser and look like a mobile application.
+
+The app must be usable on:
+
+- Desktop browser preview
+- Mobile browser
+- Netlify deployed URL
+
+The design should prioritize a mobile portrait layout.
+
+Recommended mobile frame target:
+
+- Width: 390 px
+- Height: 844 px or scrollable
+- Mobile-first responsive layout
+
+The app should still display properly on larger screens by centering the mobile app frame.
+
+---
+
+# 3. Deployment Target
+
+Primary deployment target:
+
+Netlify
+
+Source control target:
+
+GitHub repository
+
+Optional compatibility:
+
+GitHub Pages
+
+The final output must produce a working deployed URL that can be placed inside the project PDF.
+
+---
+
+# 4. Important Technical Rule
+
+The AI must be simulated.
+
+Use mock AI logic only.
+
+The app should simulate image analysis when the user clicks “Analyze Image.”
+
+Possible behavior:
+
+1. User clicks “Take Photo” or “Upload from Gallery.”
+2. App displays a mock selected image preview.
+3. User clicks “Analyze Image.”
+4. App shows an AI loading screen.
+5. After a short delay, app displays one mock result.
+6. User can view recommendations, ask technician, report wrong result, save result, or retake photo.
+
+The mock result can be selected from predefined sample data.
+
+---
+
+# 5. Suggested Project Folder Structure
+
+Use this structure:
+
+```text
+ricecare-ai/
+├── public/
+│   ├── rice-leaf-icon.svg
+│   └── sample-plant-placeholder.svg
+│
+├── src/
+│   ├── assets/
+│   │   ├── icons/
+│   │   └── images/
+│   │
+│   ├── components/
+│   │   ├── AppShell.jsx
+│   │   ├── Header.jsx
+│   │   ├── BottomNav.jsx
+│   │   ├── Button.jsx
+│   │   ├── Card.jsx
+│   │   ├── Badge.jsx
+│   │   ├── ConfidenceBar.jsx
+│   │   ├── RiskBadge.jsx
+│   │   ├── AuditTimeline.jsx
+│   │   ├── HistoryCard.jsx
+│   │   ├── HelpCard.jsx
+│   │   ├── FormField.jsx
+│   │   ├── ToggleRow.jsx
+│   │   └── Modal.jsx
+│   │
+│   ├── data/
+│   │   ├── mockAiResults.js
+│   │   ├── mockHistory.js
+│   │   ├── helpArticles.js
+│   │   └── commonRiceProblems.js
+│   │
+│   ├── pages/
+│   │   ├── Welcome.jsx
+│   │   ├── Consent.jsx
+│   │   ├── PrivacyDetails.jsx
+│   │   ├── Home.jsx
+│   │   ├── Scan.jsx
+│   │   ├── ImagePreview.jsx
+│   │   ├── PhotoGuide.jsx
+│   │   ├── PoorImageWarning.jsx
+│   │   ├── Analyzing.jsx
+│   │   ├── Result.jsx
+│   │   ├── Recommendations.jsx
+│   │   ├── TreatmentWarning.jsx
+│   │   ├── SaveConfirmation.jsx
+│   │   ├── TechnicianSupport.jsx
+│   │   ├── ReportWrongResult.jsx
+│   │   ├── ReviewSubmitted.jsx
+│   │   ├── ReviewStatus.jsx
+│   │   ├── History.jsx
+│   │   ├── ResultDetails.jsx
+│   │   ├── DeleteConfirmation.jsx
+│   │   ├── HelpCenter.jsx
+│   │   ├── HelpArticle.jsx
+│   │   ├── CommonProblems.jsx
+│   │   ├── Settings.jsx
+│   │   ├── ManageConsent.jsx
+│   │   └── About.jsx
+│   │
+│   ├── styles/
+│   │   ├── variables.css
+│   │   ├── global.css
+│   │   ├── layout.css
+│   │   └── components.css
+│   │
+│   ├── utils/
+│   │   ├── mockAnalysis.js
+│   │   ├── storage.js
+│   │   └── formatDate.js
+│   │
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── index.html
+├── package.json
+├── vite.config.js
+├── netlify.toml
+└── README.md
+````
+
+Keep the structure clean. Do not put all screens into one large file.
+
+---
+
+# 6. Routing Requirements
+
+Use React Router.
+
+Suggested routes:
+
+```text
+/                         Welcome
+/consent                  Privacy and Consent
+/privacy-details          Privacy Details
+/home                     Home Dashboard
+/scan                     Scan Rice Plant
+/image-preview            Image Preview
+/photo-guide              Image Quality Guide
+/poor-image               Poor Image Warning
+/analyzing                AI Analysis Loading
+/result                   AI Result
+/recommendations          Recommended Actions
+/treatment-warning        Treatment Safety Warning
+/save-confirmation        Save Result Confirmation
+/technician-support       Human Confirmation / Technician Support
+/report-wrong-result      Report Wrong Result
+/review-submitted         Review Submitted
+/review-status            Technician Review Status
+/history                  History and Audit Log
+/result-details/:id       Result Details
+/delete-confirmation/:id  Delete Saved Result Confirmation
+/help                     Help Center
+/help/:articleId          Help Article
+/common-problems          Common Rice Problems
+/settings                 Accessibility and App Settings
+/manage-consent           Manage Consent
+/about                    About RiceCare AI
+```
+
+The app must not have broken links.
+
+If a route is not fully implemented yet, redirect to a safe placeholder page instead of showing an error.
+
+---
+
+# 7. State Management
+
+Use simple React state.
+
+Do not add Redux, Zustand, MobX, or external state libraries.
+
+Suggested app states:
+
+```text
+consentAccepted
+selectedImage
+currentAiResult
+savedResults
+reviewRequests
+textSize
+highContrastMode
+voiceGuidance
+simpleMode
+languagePreference
+```
+
+Use localStorage only if useful for prototype persistence.
+
+Suggested localStorage keys:
+
+```text
+ricecare_consent
+ricecare_saved_results
+ricecare_accessibility_settings
+ricecare_review_requests
+```
+
+The prototype should still work even if localStorage is empty.
+
+---
+
+# 8. Mock AI Behavior
+
+Create a file:
+
+```text
+src/data/mockAiResults.js
+```
+
+It should contain mock results for:
+
+* Rice Blast Disease
+* Brown Spot
+* Bacterial Leaf Blight
+* Pest Damage
+* Healthy Plant
+* Uncertain / Low Confidence Result
+
+Each result should include:
+
+```js
+{
+  id: "rice-blast",
+  possibleIssue: "Rice Blast Disease",
+  confidence: 86,
+  riskLevel: "High",
+  category: "Disease",
+  symptoms: [
+    "Leaf spots",
+    "Irregular brown lesions",
+    "Damaged leaf areas"
+  ],
+  explanation: "The AI detected leaf spots, irregular brown lesions, and damaged leaf areas that may match symptoms of Rice Blast.",
+  alternatives: [
+    { label: "Brown Spot", confidence: 9 },
+    { label: "Bacterial Leaf Blight", confidence: 4 },
+    { label: "Healthy Plant", confidence: 1 }
+  ],
+  treatmentSteps: [
+    "Remove severely infected leaves when possible.",
+    "Avoid excessive nitrogen fertilizer.",
+    "Improve field drainage and airflow.",
+    "Consult an agricultural technician before applying fungicide."
+  ],
+  preventionTips: [
+    "Use resistant rice varieties when available.",
+    "Monitor the field regularly.",
+    "Avoid overcrowding and poor water management.",
+    "Report severe symptoms early."
+  ],
+  technicianAdvice: "Ask a technician before applying chemical treatment, especially when many plants are affected."
+}
+```
+
+Create a utility:
+
+```text
+src/utils/mockAnalysis.js
+```
+
+Suggested function:
+
+```js
+export function getMockAiResult(mode = "random") {
+  // Return one mock result.
+}
+```
+
+For easier testing, allow result mode options:
+
+```text
+high-risk
+medium-risk
+low-risk
+healthy
+uncertain
+random
+```
+
+---
+
+# 9. Image Upload Prototype Behavior
+
+Do not implement real image analysis.
+
+For file upload:
+
+* Allow the user to select an image from device if possible.
+* Show the selected image preview.
+* If no real image is selected, use a plant placeholder image.
+* Continue to the mock analysis flow.
+
+For “Take Photo”:
+
+* Simulate photo capture.
+* Show a placeholder rice plant image.
+* Continue to image preview or scan confirmation.
+
+The prototype does not need actual camera access unless easy to add without breaking the build.
+
+If camera access is implemented, provide fallback behavior when permission is denied.
+
+---
+
+# 10. Bottom Navigation Rules
+
+Bottom navigation should appear on main app screens after consent.
+
+Tabs:
+
+* Home
+* Scan
+* History
+* Help
+* Settings
+
+Routes:
+
+```text
+Home      → /home
+Scan      → /scan
+History   → /history
+Help      → /help
+Settings  → /settings
+```
+
+Active tab must be visually highlighted.
+
+Bottom navigation should not appear on:
+
+* Welcome screen
+* Consent screen
+* AI loading screen if it makes the screen cleaner
+* Confirmation modal-only states if inappropriate
+
+Use consistent behavior across the app.
+
+---
+
+# 11. UI Responsiveness
+
+The app must be mobile-first.
+
+On desktop:
+
+* Center the mobile app frame.
+* Use a soft background outside the app frame.
+* Keep the app width around 390 px to 430 px.
+* Allow vertical scrolling.
+
+On mobile:
+
+* Use full viewport width.
+* Preserve safe spacing.
+* Avoid horizontal scrolling.
+
+All buttons must be large enough to tap.
+
+Avoid cramped layouts.
+
+---
+
+# 12. Accessibility Requirements
+
+Implement these prototype settings:
+
+* Text Size: Normal / Large
+* Language: English / Filipino / Local Language placeholder
+* Voice Guidance: On / Off
+* High Contrast Mode: On / Off
+* Simple Mode: On / Off
+
+These settings can be simulated visually.
+
+High Contrast Mode should increase contrast and make borders/text stronger.
+
+Large Text should visibly increase body text and button text size.
+
+Simple Mode can reduce extra helper text or simplify some sections if easy to implement.
+
+Do not make accessibility settings decorative only. They should visibly affect the UI where reasonable.
+
+---
+
+# 13. Data Persistence Rules
+
+Use localStorage for prototype-level saved data.
+
+Saved result should include:
+
+```js
+{
+  id: "result-001",
+  date: "March 21, 2026",
+  possibleIssue: "Rice Blast Disease",
+  confidence: 86,
+  riskLevel: "High",
+  status: "Saved",
+  auditTrail: [
+    "Image checked",
+    "AI result generated",
+    "Recommendation viewed",
+    "Result saved"
+  ]
+}
+```
+
+Review request should include:
+
+```js
+{
+  id: "review-001",
+  farmerName: "Sample Farmer",
+  location: "Barangay Sample",
+  description: "Brown spots appeared on many leaves after heavy rain.",
+  submittedResult: "Rice Blast Disease",
+  riskLevel: "High",
+  status: "Under Review",
+  submittedAt: "March 21, 2026, 9:30 AM"
+}
+```
+
+If no saved data exists, show sample history cards so the prototype still looks complete during presentation.
+
+---
+
+# 14. Netlify Configuration
+
+Create a file:
+
+```text
+netlify.toml
+```
+
+Use this configuration:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+This is required so React Router routes work correctly after deployment.
+
+---
+
+# 15. Vite Configuration
+
+Use a normal Vite React configuration.
+
+Suggested:
+
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+})
+```
+
+For Netlify deployment, do not set a custom base unless necessary.
+
+If deploying to GitHub Pages later, a base path may be needed.
+
+---
+
+# 16. Package Scripts
+
+Use standard scripts:
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
+```
+
+The project must build successfully with:
+
+```bash
+npm run build
+```
+
+Do not leave build errors.
+
+---
+
+# 17. README Requirements
+
+Create a README.md with:
+
+```text
+# RiceCare AI
+
+RiceCare AI is a mobile-first Human-Centered AI prototype for rice farmers. It provides advisory support for possible rice plant pests and diseases using mock AI logic.
+
+## Tech Stack
+
+React + Vite
+
+## Install
+
+npm install
+
+## Run Locally
+
+npm run dev
+
+## Build
+
+npm run build
+
+## Deploy
+
+Deploy the project to Netlify using the build command:
+
+npm run build
+
+Publish directory:
+
+dist
+
+## Notes
+
+This is a prototype. It uses mock AI logic and does not perform real disease detection.
+```
+
+---
+
+# 18. GitHub Workflow
+
+Use this workflow:
+
+```bash
+git init
+git add .
+git commit -m "Initial RiceCare AI prototype"
+git branch -M main
+git remote add origin <GITHUB_REPO_URL>
+git push -u origin main
+```
+
+If the repository already exists, only add, commit, and push changes.
+
+---
+
+# 19. Netlify Deployment Steps
+
+Deployment process:
+
+1. Push project to GitHub.
+2. Open Netlify.
+3. Choose “Add new site.”
+4. Choose “Import an existing project.”
+5. Connect the GitHub repository.
+6. Set build command:
+
+```bash
+npm run build
+```
+
+7. Set publish directory:
+
+```text
+dist
+```
+
+8. Deploy the site.
+9. Copy the deployed Netlify URL.
+10. Test all routes and buttons.
+11. Use the Netlify URL as the prototype link in the final PDF.
+
+---
+
+# 20. Build Quality Rules
+
+Codex must ensure:
+
+* No broken imports
+* No missing route components
+* No console-breaking errors
+* No blank pages
+* No unreadable text
+* No cramped mobile layout
+* No broken navigation
+* No missing mock data
+* No deployment-breaking configuration
+* No backend dependency
+* No real AI API dependency
+
+---
+
+# 21. Final Technical Success Criteria
+
+The build is successful if:
+
+1. The app runs locally with `npm run dev`.
+2. The app builds successfully with `npm run build`.
+3. The app can be deployed to Netlify.
+4. React Router works after deployment.
+5. All major screens are reachable.
+6. The mock AI flow works.
+7. The result screen shows confidence, risk, explanation, and recommendations.
+8. The technician review flow works as a prototype.
+9. The history and audit screens show saved or sample data.
+10. Accessibility settings visibly affect the interface.
+11. The UI remains mobile-first and consistent.
+12. The deployed URL can be used as the final clickable prototype link.
+
+```

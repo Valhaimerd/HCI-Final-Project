@@ -1,0 +1,2022 @@
+Below is **Document 4 of 7: Expanded Screen and Flow Requirements** for Codex. This expands beyond the original 15 screens because the project needs extra states for consent, mock AI results, low-confidence cases, technician review, audit trail, privacy, accessibility, and help content. The uploaded UI Design document requires 15 base screens, while the final deliverable and IT58 instructions require clear prototype workflows, screenshots, explainability, consent/privacy, accessibility, evaluation evidence, and governance/audit support.   
+
+````markdown
+# Document 4: Expanded Screen and Flow Requirements for Codex
+
+## Project
+
+RiceCare AI  
+Pest and Disease Advisory for Rice Farmers
+
+## Purpose of This Document
+
+This document defines the screens, states, and user flows that Codex must build for the RiceCare AI prototype.
+
+The prototype must not be limited to only 15 screens. The uploaded UI Design document lists 15 required screens, but the actual app needs additional states, modals, and alternate flows to make the prototype complete and realistic.
+
+Some items in this document should be full pages. Some may be modal dialogs, conditional states, or reusable screen variations.
+
+The final prototype must feel like one complete mobile app, not disconnected screens.
+
+---
+
+# 1. Global Screen Rules
+
+Every screen must follow the RiceCare AI design system.
+
+Use:
+
+- Mobile-first layout
+- Consistent app identity
+- Consistent header
+- Consistent bottom navigation where appropriate
+- Green agriculture-focused visual style
+- Simple farmer-friendly wording
+- Clear advisory language
+- Large readable buttons
+- Card-based layout
+- Scrollable content when needed
+
+Do not use technical AI terms on farmer-facing screens.
+
+Use “possible issue,” “advisory result,” “confidence,” and “ask technician.”
+
+Do not use “confirmed diagnosis,” “guaranteed result,” or “apply chemical now.”
+
+---
+
+# 2. Required Navigation Structure
+
+Use React Router or equivalent routing.
+
+Suggested route list:
+
+```text
+/                         Welcome
+/consent                  Privacy and Consent
+/privacy-details          Privacy Details
+/home                     Home Dashboard
+/scan                     Scan Rice Plant
+/image-preview            Image Upload Preview
+/photo-guide              Image Quality Guide
+/poor-image               Poor Image Warning
+/analyzing                AI Analysis Loading
+/result                   AI Result
+/recommendations          Recommended Actions
+/treatment-warning        Treatment Safety Warning
+/save-confirmation        Save Result Confirmation
+/technician-support       Technician Support
+/report-wrong-result      Report Wrong Result
+/review-submitted         Review Submitted
+/review-status            Technician Review Status
+/history                  History and Audit Log
+/result-details/:id       Result Details
+/delete-confirmation/:id  Delete Confirmation
+/help                     Help Center
+/help/:articleId          Help Article
+/common-problems          Common Rice Problems
+/settings                 Accessibility and App Settings
+/manage-consent           Manage Consent
+/about                    About RiceCare AI
+````
+
+If Codex adds extra routes, they must still follow the same app style.
+
+---
+
+# 3. Bottom Navigation Requirements
+
+Bottom navigation tabs:
+
+```text
+Home
+Scan
+History
+Help
+Settings
+```
+
+Tab routes:
+
+```text
+Home      → /home
+Scan      → /scan
+History   → /history
+Help      → /help
+Settings  → /settings
+```
+
+Show bottom navigation on:
+
+* Home
+* Scan
+* History
+* Help
+* Settings
+* Common Problems
+* Result Details if appropriate
+* Help Article if appropriate
+
+Hide bottom navigation on:
+
+* Welcome
+* Consent
+* AI Analysis Loading
+* Modal-style confirmation screens if it distracts the user
+
+Active tab must be highlighted in Primary Green.
+
+---
+
+# 4. Screen Inventory
+
+The prototype should include the following screens and states.
+
+## Screen 1: Splash / Welcome Screen
+
+Route:
+
+```text
+/
+```
+
+Purpose:
+
+Introduce RiceCare AI and explain the app in a simple way.
+
+Required content:
+
+```text
+App Name: RiceCare AI
+Subtitle: Pest and Disease Advisory for Rice Farmers
+Short text: Get quick guidance for possible rice pests and diseases.
+Disclaimer: For decision support only. Consult an agricultural technician when needed.
+```
+
+Required actions:
+
+```text
+Get Started → /consent
+```
+
+Design requirements:
+
+* Large rice leaf or simple app logo
+* Soft green background
+* Clean layout
+* No bottom navigation
+* Not overcrowded
+
+---
+
+## Screen 2: Privacy and Consent Screen
+
+Route:
+
+```text
+/consent
+```
+
+Purpose:
+
+Collect user consent before the scan flow.
+
+Required content:
+
+```text
+Title: Before You Start
+
+RiceCare AI analyzes plant images to suggest possible pest or disease problems. Your image is used only for analysis and advisory support.
+```
+
+Consent checklist:
+
+```text
+I understand this is advisory support, not a final expert diagnosis.
+I allow the system to analyze the uploaded plant image.
+I understand I can ask a technician for confirmation.
+```
+
+Required actions:
+
+```text
+I Agree and Continue → /home
+Learn about privacy → /privacy-details
+```
+
+Functional requirement:
+
+* The continue button should appear disabled until the checklist is accepted.
+* This can be simulated using React state.
+
+Design requirements:
+
+* Shield/privacy icon
+* Large checkboxes
+* Simple language
+* No bottom navigation
+
+---
+
+## Screen 3: Privacy Details / Image Use Explanation
+
+Route:
+
+```text
+/privacy-details
+```
+
+Purpose:
+
+Explain how plant images and saved results are handled.
+
+Required sections:
+
+```text
+How your image is used
+What is saved
+Optional sharing with technician
+Deleting saved scan history
+Advisory limitation
+```
+
+Required actions:
+
+```text
+Back to Consent → /consent
+Continue → /home
+```
+
+Design requirements:
+
+* Card-based explanation
+* Simple privacy wording
+* No intimidating legal text
+
+---
+
+## Screen 4: Home Dashboard
+
+Route:
+
+```text
+/home
+```
+
+Purpose:
+
+Main entry point after consent.
+
+Required content:
+
+```text
+Header: Hello, Farmer
+Subtext: What would you like to check today?
+```
+
+Main card:
+
+```text
+Title: Check your rice plant health
+Text: Scan affected leaves, stems, or plant areas for advisory support.
+CTA: Scan Rice Plant
+```
+
+Secondary cards:
+
+```text
+Upload Image
+View Previous Results
+Ask Technician
+Help Center
+Accessibility Settings
+```
+
+Educational tip card:
+
+```text
+Tip: Take a clear photo of affected leaves or stems under good lighting.
+```
+
+Required actions:
+
+```text
+Scan Rice Plant → /scan
+Upload Image → /scan
+View Previous Results → /history
+Ask Technician → /technician-support
+Help Center → /help
+Accessibility Settings → /settings
+```
+
+Design requirements:
+
+* Bottom navigation active: Home
+* Scan action must be visually dominant
+* Cards must be easy to tap
+
+---
+
+## Screen 5: Scan Rice Plant / Capture Upload Screen
+
+Route:
+
+```text
+/scan
+```
+
+Purpose:
+
+Let the user take or upload a plant image.
+
+Required content:
+
+```text
+Header: Scan Rice Plant
+
+Instruction:
+Take a clear photo of the affected part of the rice plant.
+Avoid blurry images and poor lighting.
+```
+
+Required UI:
+
+```text
+Large image placeholder
+Camera icon
+Rice plant outline
+Checklist card:
+- Clear image
+- Affected part visible
+- Good lighting
+- Leaf or stem centered
+```
+
+Required actions:
+
+```text
+Take Photo → /image-preview
+Upload from Gallery → /image-preview
+Need help taking a photo? → /photo-guide
+Analyze Image → /analyzing
+```
+
+Functional requirement:
+
+* “Take Photo” can simulate a selected image.
+* “Upload from Gallery” can allow file upload if simple, or show a mock image preview.
+* If no image is selected, still allow mock prototype flow using a placeholder image.
+
+Design requirements:
+
+* Bottom navigation active: Scan
+* Keep instructions short
+* Include note: Image quality affects AI accuracy.
+
+---
+
+## Screen 6: Image Upload Preview
+
+Route:
+
+```text
+/image-preview
+```
+
+Purpose:
+
+Show selected or simulated plant image before analysis.
+
+Required content:
+
+```text
+Title: Review Image
+Text: Make sure the affected area is clear before analysis.
+```
+
+Required UI:
+
+```text
+Image preview card
+Checklist:
+- Affected area visible
+- Image is not too blurry
+- Lighting is clear
+- Plant part is centered
+```
+
+Required actions:
+
+```text
+Analyze Image → /analyzing
+Retake Photo → /scan
+Photo Guide → /photo-guide
+```
+
+Optional state:
+
+If poor image mode is triggered:
+
+```text
+Continue → /poor-image
+```
+
+---
+
+## Screen 7: Image Quality Guide Screen
+
+Route:
+
+```text
+/photo-guide
+```
+
+Purpose:
+
+Teach users how to take better crop photos.
+
+Required sections:
+
+```text
+How to Take a Good Photo
+Good Photo
+Avoid This
+```
+
+Good Photo checklist:
+
+```text
+Clear and bright
+Affected area visible
+Close enough to see spots or damage
+Leaf or stem is centered
+```
+
+Avoid This checklist:
+
+```text
+Too blurry
+Too dark
+Too far from the plant
+Affected area blocked
+```
+
+Required actions:
+
+```text
+Start Scanning → /scan
+Back → previous screen or /scan
+```
+
+Design requirements:
+
+* Use visual comparison cards
+* Use checkmarks and warning icons
+* Keep text short
+
+---
+
+## Screen 8: Poor Image Warning / Retake Prompt
+
+Route:
+
+```text
+/poor-image
+```
+
+Purpose:
+
+Show that image quality may affect AI accuracy.
+
+Required content:
+
+```text
+Title: Image May Be Unclear
+Text: This photo may be too blurry, dark, or far from the affected plant area.
+Note: A clearer photo helps RiceCare AI provide a more useful advisory result.
+```
+
+Required actions:
+
+```text
+Retake Photo → /scan
+View Photo Guide → /photo-guide
+Continue Anyway → /analyzing
+```
+
+Design requirements:
+
+* Warning tone, not error tone
+* Do not blame the user
+* Use orange warning style
+
+---
+
+## Screen 9: AI Analysis Loading Screen
+
+Route:
+
+```text
+/analyzing
+```
+
+Purpose:
+
+Show that the mock AI is analyzing the image.
+
+Required content:
+
+```text
+Header: Analyzing Image
+Text: Please wait while RiceCare AI checks the image.
+Small note: This usually takes a few seconds.
+```
+
+Step indicators:
+
+```text
+Checking plant image
+Detecting visible symptoms
+Preparing advisory result
+```
+
+Required behavior:
+
+* After short delay or button click, continue to /result.
+* The app should choose or load one mock AI result.
+
+Design requirements:
+
+* Calm loading state
+* Rice leaf scanning illustration
+* No bottom navigation
+
+---
+
+## Screen 10: AI Result — General Result Screen
+
+Route:
+
+```text
+/result
+```
+
+Purpose:
+
+Show the mock AI result with explainability and user control.
+
+This screen must support multiple result types:
+
+```text
+High-confidence disease result
+Low-confidence uncertain result
+Healthy plant result
+Pest damage result
+Medium-risk disease result
+```
+
+Required content:
+
+```text
+Header: Analysis Result
+Possible Issue
+Confidence Score
+Risk Level
+Category
+Detected symptom areas
+Why this result?
+Alternative possible results
+Advisory disclaimer
+Risk awareness note
+```
+
+Required actions:
+
+```text
+View Recommendations → /recommendations
+Ask Technician → /technician-support
+Report Wrong Result → /report-wrong-result
+Retake Photo → /scan
+```
+
+Design requirements:
+
+* This is a critical HCAI screen.
+* Must show explanation, not only a label.
+* Must show confidence and risk.
+* Must include human override actions.
+* Must include advisory disclaimer.
+
+---
+
+## Screen 11: AI Result — High Confidence Disease State
+
+Can use route:
+
+```text
+/result?mode=high-risk
+```
+
+or internal state.
+
+Purpose:
+
+Show likely disease with strong confidence.
+
+Example content:
+
+```text
+Possible Issue: Rice Blast Disease
+Confidence: 86%
+Risk Level: High
+Category: Disease
+```
+
+Explanation example:
+
+```text
+The AI detected leaf spots, irregular brown lesions, and damaged leaf areas that may match symptoms of Rice Blast.
+```
+
+Required behavior:
+
+* View Recommendations should be prominent.
+* Ask Technician should still be visible.
+* Warning note must remind user this is advisory only.
+
+---
+
+## Screen 12: AI Result — Low Confidence / Uncertain State
+
+Can use route:
+
+```text
+/result?mode=uncertain
+```
+
+or internal state.
+
+Purpose:
+
+Show uncertainty when the mock AI confidence is low.
+
+Example content:
+
+```text
+Possible Issue: Uncertain Result
+Confidence: 48%
+Risk Level: Needs Review
+```
+
+Required message:
+
+```text
+The image does not clearly match one known pest or disease. Please retake the photo or ask a technician for confirmation.
+```
+
+Required actions:
+
+```text
+Retake Photo → /scan
+Ask Technician → /technician-support
+View Possible Matches → /recommendations
+```
+
+Design requirements:
+
+* Do not force a disease label.
+* Use caution style.
+* Human confirmation should be emphasized.
+
+---
+
+## Screen 13: AI Result — Healthy Plant State
+
+Can use route:
+
+```text
+/result?mode=healthy
+```
+
+or internal state.
+
+Purpose:
+
+Show that the plant appears healthy based on mock AI.
+
+Example content:
+
+```text
+Possible Issue: No major visible issue detected
+Confidence: 91%
+Risk Level: Low
+Category: Healthy
+```
+
+Required message:
+
+```text
+RiceCare AI did not detect strong visible symptoms in this image. Continue regular field monitoring.
+```
+
+Required actions:
+
+```text
+Save Result → /save-confirmation
+Scan Another Plant → /scan
+View Care Tips → /recommendations
+```
+
+Design requirements:
+
+* Use success/low-risk styling
+* Still include advisory disclaimer
+
+---
+
+## Screen 14: AI Result — Pest Damage State
+
+Can use route:
+
+```text
+/result?mode=pest
+```
+
+or internal state.
+
+Purpose:
+
+Show possible pest-related issue.
+
+Example content:
+
+```text
+Possible Issue: Possible Pest Damage
+Confidence: 78%
+Risk Level: Medium
+Category: Pest
+```
+
+Required message:
+
+```text
+The AI detected damaged leaf areas that may match pest feeding marks.
+```
+
+Required actions:
+
+```text
+View Recommendations → /recommendations
+Ask Technician → /technician-support
+Report Wrong Result → /report-wrong-result
+Retake Photo → /scan
+```
+
+---
+
+## Screen 15: Recommended Actions Screen
+
+Route:
+
+```text
+/recommendations
+```
+
+Purpose:
+
+Provide treatment, prevention, and safe farming advice.
+
+Required sections:
+
+```text
+For: [Possible Issue]
+Risk Badge
+Treatment Steps
+Prevention Tips
+Recommended Farming Practice
+Safety Warning
+```
+
+Example treatment steps:
+
+```text
+Remove severely infected leaves when possible.
+Avoid excessive nitrogen fertilizer.
+Improve field drainage and airflow.
+Consult an agricultural technician before applying fungicide.
+```
+
+Example prevention tips:
+
+```text
+Use resistant rice varieties when available.
+Monitor the field regularly.
+Avoid overcrowding and poor water management.
+Report severe symptoms early.
+```
+
+Required actions:
+
+```text
+Save Result → /save-confirmation
+Share with Technician → /technician-support
+Back to Result → /result
+Back to Home → /home
+```
+
+Design requirements:
+
+* Use separate cards
+* Avoid long paragraphs
+* Do not recommend chemical treatment without technician confirmation
+
+---
+
+## Screen 16: Treatment Safety Warning
+
+Route:
+
+```text
+/treatment-warning
+```
+
+Purpose:
+
+Warn users before acting on high-risk treatment advice.
+
+Required content:
+
+```text
+Title: Before Taking Action
+Text: Ask a technician before applying chemical treatment, especially when many plants are affected.
+```
+
+Required actions:
+
+```text
+Ask Technician → /technician-support
+Return to Recommendations → /recommendations
+Back to Home → /home
+```
+
+Design requirements:
+
+* Use orange warning style
+* Keep wording calm and practical
+
+---
+
+## Screen 17: Save Result Confirmation
+
+Route:
+
+```text
+/save-confirmation
+```
+
+Purpose:
+
+Confirm that the result was saved.
+
+Required content:
+
+```text
+Title: Result Saved
+Text: This scan result was saved to your history.
+```
+
+Required actions:
+
+```text
+View History → /history
+Scan Another Plant → /scan
+Back to Home → /home
+```
+
+Functional requirement:
+
+* Add saved result to local mock history if possible.
+* If localStorage is not used, simulate saved state visually.
+
+---
+
+## Screen 18: Technician Support / Human Confirmation Screen
+
+Route:
+
+```text
+/technician-support
+```
+
+Purpose:
+
+Allow users to ask for human review.
+
+Required content:
+
+```text
+Header: Need Human Confirmation?
+Text: If you think the AI result is incorrect or uncertain, you can request help from an agricultural technician.
+```
+
+Required AI summary card:
+
+```text
+Possible Issue
+Confidence
+Risk Level
+Status: Needs confirmation
+```
+
+Required form fields:
+
+```text
+Farmer Name
+Location / Barangay
+Short Description of Problem
+Contact Number optional
+```
+
+Required placeholder:
+
+```text
+Example: Brown spots appeared on many leaves after heavy rain.
+```
+
+Required actions:
+
+```text
+Submit for Review → /review-submitted
+Retake Photo → /scan
+Back to Result → /result
+```
+
+Design requirements:
+
+* Clearly show human override
+* Make it clear the farmer can disagree with AI
+* Keep form simple
+
+---
+
+## Screen 19: Report Wrong Result Screen
+
+Route:
+
+```text
+/report-wrong-result
+```
+
+Purpose:
+
+Allow users to report that the AI result may be wrong.
+
+Required content:
+
+```text
+Title: Report Wrong Result
+Text: Tell us why the result seems incorrect. This helps improve review and future advisory support.
+```
+
+Required fields:
+
+```text
+What seems wrong?
+What did you observe in the field?
+Optional location/barangay
+```
+
+Required actions:
+
+```text
+Submit Report → /review-submitted
+Ask Technician Instead → /technician-support
+Back to Result → /result
+```
+
+Design requirements:
+
+* Use warning style lightly
+* Do not make it feel like the user made a mistake
+* Support user appeal
+
+---
+
+## Screen 20: Review Submitted Screen
+
+Route:
+
+```text
+/review-submitted
+```
+
+Purpose:
+
+Confirm technician review or report submission.
+
+Required content:
+
+```text
+Title: Review Request Submitted
+Message: Your request has been submitted for technician review.
+```
+
+Status card:
+
+```text
+Status: Under Review
+Submitted: March 21, 2026, 9:30 AM
+Location: Barangay Sample
+Submitted Result: Rice Blast Disease
+Risk Level: High
+```
+
+Timeline:
+
+```text
+Request Submitted — Completed
+Technician Review — In Progress
+Recommendation Update — Pending
+```
+
+Required actions:
+
+```text
+View Review Status → /review-status
+View History → /history
+Back to Home → /home
+```
+
+---
+
+## Screen 21: Technician Review Status Screen
+
+Route:
+
+```text
+/review-status
+```
+
+Purpose:
+
+Show ongoing review status.
+
+Required content:
+
+```text
+Title: Technician Review Status
+Status: Under Review
+```
+
+Required sections:
+
+```text
+Submitted Result
+Risk Level
+Submitted Date
+Location
+Description
+Timeline
+```
+
+Timeline states:
+
+```text
+Submitted
+Under Review
+Technician Response Pending
+Updated Recommendation Pending
+```
+
+Required actions:
+
+```text
+View History → /history
+Ask Technician Again → /technician-support
+Back to Home → /home
+```
+
+---
+
+## Screen 22: History and Audit Log Screen
+
+Route:
+
+```text
+/history
+```
+
+Purpose:
+
+Show saved scan results and audit trail.
+
+Required content:
+
+```text
+Header: Previous Results
+Intro: Saved results help farmers track crop health and support technician review.
+```
+
+History cards:
+
+```text
+Date
+Result
+Risk
+Status
+View Details button
+```
+
+Sample records:
+
+```text
+March 21, 2026 — Rice Blast Disease — High Risk — Under Review
+March 18, 2026 — Brown Spot — Medium Risk — Shared with Technician
+March 12, 2026 — Healthy Plant — Low Risk — Saved
+```
+
+Audit section:
+
+```text
+Audit Trail
+Image checked
+Result generated
+Recommendation viewed
+Result saved
+Shared with technician
+```
+
+Required actions:
+
+```text
+View Details → /result-details/:id
+Scan New Plant → /scan
+```
+
+Design requirements:
+
+* Bottom navigation active: History
+* Use status badges
+* Make governance/audit evidence visible
+
+---
+
+## Screen 23: Result Details Screen
+
+Route:
+
+```text
+/result-details/:id
+```
+
+Purpose:
+
+Show detailed saved scan record.
+
+Required content:
+
+```text
+Header: Result Details
+Image preview with highlighted areas
+Possible Issue
+Confidence
+Risk Level
+Date Checked
+Status
+Why this result?
+Treatment summary
+Prevention summary
+Audit detail
+```
+
+Audit detail sample:
+
+```text
+Image uploaded
+AI analysis completed
+Result viewed
+Recommendation opened
+Technician review requested
+```
+
+Required actions:
+
+```text
+Share with Technician → /technician-support
+Ask Technician Again → /technician-support
+Delete Result → /delete-confirmation/:id
+Back to History → /history
+```
+
+Design requirements:
+
+* Must feel like a record page
+* Use clear sections and badges
+* Keep audit trail simple
+
+---
+
+## Screen 24: Delete Saved Result Confirmation
+
+Route:
+
+```text
+/delete-confirmation/:id
+```
+
+Purpose:
+
+Confirm before deleting a saved result.
+
+Required content:
+
+```text
+Title: Delete Saved Result?
+Text: This will remove the saved scan result from your history.
+```
+
+Required actions:
+
+```text
+Delete Result → /history
+Cancel → /result-details/:id
+```
+
+Design requirements:
+
+* Use danger style only for delete action
+* Do not use harsh wording
+
+Functional requirement:
+
+* If using localStorage, remove the saved item.
+* If not, simulate deletion by returning to history.
+
+---
+
+## Screen 25: Help Center Screen
+
+Route:
+
+```text
+/help
+```
+
+Purpose:
+
+Provide farmer support and app guidance.
+
+Required intro:
+
+```text
+Learn how to scan rice plants, understand AI results, and know when to ask for technician support.
+```
+
+Help cards:
+
+```text
+How to Scan a Rice Plant
+How to Take a Clear Photo
+Understanding Your Result
+When to Ask a Technician
+Common Rice Plant Problems
+Privacy and Image Use
+Frequently Asked Questions
+Report App Problem
+```
+
+Required actions:
+
+```text
+Understanding Your Result → /help/understanding-ai-results
+How to Take a Clear Photo → /photo-guide
+Common Rice Plant Problems → /common-problems
+Privacy and Image Use → /privacy-details
+Ask Technician → /technician-support
+Back to Home → /home
+```
+
+Design requirements:
+
+* Bottom navigation active: Help
+* Use stacked help cards
+* Keep it readable and simple
+
+---
+
+## Screen 26: Help Article — Understanding AI Results
+
+Route:
+
+```text
+/help/understanding-ai-results
+```
+
+Purpose:
+
+Explain result terms in simple language.
+
+Required sections:
+
+```text
+Possible Issue
+Confidence Score
+Risk Level
+Why this result?
+When to Ask a Technician
+```
+
+Required warning card:
+
+```text
+RiceCare AI provides advisory support only. It is not a final expert diagnosis.
+```
+
+Required actions:
+
+```text
+Ask Technician Now → /technician-support
+Back to Help → /help
+```
+
+---
+
+## Screen 27: Help Article — Taking Good Photos
+
+Route:
+
+```text
+/help/taking-good-photos
+```
+
+Purpose:
+
+Explain photo quality in article form.
+
+Required sections:
+
+```text
+Use good lighting
+Move closer to the affected area
+Keep the leaf or stem centered
+Avoid blurry images
+Take another photo if unsure
+```
+
+Required actions:
+
+```text
+Start Scanning → /scan
+Back to Help → /help
+```
+
+This may reuse the Photo Guide content if needed.
+
+---
+
+## Screen 28: Common Rice Problems Screen
+
+Route:
+
+```text
+/common-problems
+```
+
+Purpose:
+
+Show simple educational information about common rice plant issues.
+
+Required items:
+
+```text
+Rice Blast Disease
+Brown Spot
+Bacterial Leaf Blight
+Possible Pest Damage
+Healthy Plant
+```
+
+Each item should include:
+
+```text
+Short description
+Common visible signs
+When to ask technician
+```
+
+Required actions:
+
+```text
+Scan Plant → /scan
+Ask Technician → /technician-support
+Back to Help → /help
+```
+
+Design requirements:
+
+* Keep educational content simple
+* Do not turn it into a long textbook
+
+---
+
+## Screen 29: Accessibility and App Settings Screen
+
+Route:
+
+```text
+/settings
+```
+
+Purpose:
+
+Show accessibility and app settings.
+
+Required sections:
+
+```text
+Accessibility
+Privacy and Saved Data
+About
+```
+
+Accessibility controls:
+
+```text
+Text Size: Normal / Large
+Language: English / Filipino / Local Language
+Voice Guidance: On / Off
+High Contrast Mode: On / Off
+Simple Mode: On / Off
+```
+
+Privacy options:
+
+```text
+Manage consent
+View privacy information
+Delete saved scan history
+Manage technician contact
+```
+
+About options:
+
+```text
+About RiceCare AI
+```
+
+Required actions:
+
+```text
+Save Settings
+Manage Consent → /manage-consent
+View Privacy Information → /privacy-details
+About RiceCare AI → /about
+Back to Home → /home
+```
+
+Design requirements:
+
+* Bottom navigation active: Settings
+* Settings must be scrollable
+* Accessibility changes should visibly affect the UI when possible
+
+---
+
+## Screen 30: Manage Consent Screen
+
+Route:
+
+```text
+/manage-consent
+```
+
+Purpose:
+
+Allow user to review or change consent choices.
+
+Required content:
+
+```text
+Title: Manage Consent
+```
+
+Consent options:
+
+```text
+Allow image analysis
+Save scan results
+Allow technician sharing
+Allow anonymized image use for improvement
+```
+
+Required notes:
+
+```text
+You can use advisory analysis without allowing optional data sharing.
+```
+
+Required actions:
+
+```text
+Save Consent Settings → /settings
+Back to Settings → /settings
+```
+
+Design requirements:
+
+* Make required and optional consent visually clear
+* Do not make optional sharing look forced
+
+---
+
+## Screen 31: About RiceCare AI Screen
+
+Route:
+
+```text
+/about
+```
+
+Purpose:
+
+Explain what the app is and its limitations.
+
+Required content:
+
+```text
+RiceCare AI is a Human-Centered AI advisory prototype for rice farmers.
+It helps farmers check possible pest and disease issues using plant images.
+The app provides advisory support only and does not replace agricultural technicians.
+```
+
+Required sections:
+
+```text
+What the app does
+What the app does not do
+Why human confirmation matters
+Prototype note
+```
+
+Required actions:
+
+```text
+Back to Settings → /settings
+Back to Home → /home
+```
+
+---
+
+# 5. Main User Flows
+
+## Flow A: First-Time User Flow
+
+```text
+Welcome
+→ Privacy and Consent
+→ Home Dashboard
+```
+
+Success condition:
+
+The user understands what the app does and accepts advisory/privacy terms.
+
+---
+
+## Flow B: Main Scan and Result Flow
+
+```text
+Home
+→ Scan Rice Plant
+→ Image Preview
+→ AI Analysis Loading
+→ AI Result
+→ Recommended Actions
+```
+
+Success condition:
+
+The user can scan/upload a plant image, receive a mock AI result, understand the result, and view recommendations.
+
+---
+
+## Flow C: Poor Image Flow
+
+```text
+Scan Rice Plant
+→ Image Preview
+→ Poor Image Warning
+→ Retake Photo
+→ Scan Rice Plant
+```
+
+Alternative:
+
+```text
+Poor Image Warning
+→ Continue Anyway
+→ AI Analysis Loading
+```
+
+Success condition:
+
+The app teaches the user that photo quality affects AI accuracy.
+
+---
+
+## Flow D: Low Confidence Flow
+
+```text
+AI Analysis Loading
+→ Low Confidence Result
+→ Retake Photo
+```
+
+Alternative:
+
+```text
+Low Confidence Result
+→ Ask Technician
+→ Technician Support
+→ Review Submitted
+```
+
+Success condition:
+
+The app does not force uncertain AI results and guides the user toward safer action.
+
+---
+
+## Flow E: Human Confirmation Flow
+
+```text
+AI Result
+→ Ask Technician
+→ Technician Support Form
+→ Review Submitted
+→ Review Status
+```
+
+Success condition:
+
+The user can request human help when uncertain or when the issue is serious.
+
+---
+
+## Flow F: Report Wrong Result Flow
+
+```text
+AI Result
+→ Report Wrong Result
+→ Submit Report
+→ Review Submitted
+```
+
+Success condition:
+
+The user can challenge the AI output and submit an appeal/report.
+
+---
+
+## Flow G: Save and History Flow
+
+```text
+Recommended Actions
+→ Save Result
+→ Save Confirmation
+→ History
+→ Result Details
+```
+
+Success condition:
+
+The user can save and review past scan results.
+
+---
+
+## Flow H: Delete Saved Result Flow
+
+```text
+History
+→ Result Details
+→ Delete Result
+→ Delete Confirmation
+→ History
+```
+
+Success condition:
+
+The user can manage saved scan data.
+
+---
+
+## Flow I: Help Flow
+
+```text
+Home
+→ Help Center
+→ Understanding AI Results
+→ Ask Technician
+```
+
+Alternative:
+
+```text
+Help Center
+→ How to Take a Clear Photo
+→ Scan Rice Plant
+```
+
+Success condition:
+
+The user can learn how to use the app and understand AI output.
+
+---
+
+## Flow J: Settings and Accessibility Flow
+
+```text
+Home
+→ Settings
+→ Change Text Size / High Contrast / Voice Guidance / Simple Mode
+→ Save Settings
+```
+
+Success condition:
+
+Accessibility options are visible and affect the interface when possible.
+
+---
+
+## Flow K: Privacy Management Flow
+
+```text
+Settings
+→ Manage Consent
+→ Save Consent Settings
+→ Settings
+```
+
+Success condition:
+
+The user can review and manage consent options.
+
+---
+
+# 6. Conditional States Codex Should Support
+
+The app should support these states through mock data or local state.
+
+```text
+No image selected
+Image selected
+Poor image warning triggered
+AI analyzing
+High-confidence disease result
+Medium-risk pest result
+Healthy plant result
+Low-confidence uncertain result
+Result saved
+Review submitted
+Report submitted
+No saved history
+Saved history available
+Large text mode active
+High contrast mode active
+Simple mode active
+Consent accepted
+Consent not yet accepted
+```
+
+---
+
+# 7. Required Mock Result Variations
+
+The Result screen must be able to display different result types.
+
+Required mock results:
+
+```text
+Rice Blast Disease
+Brown Spot
+Bacterial Leaf Blight
+Possible Pest Damage
+Healthy Plant
+Uncertain / Low Confidence Result
+```
+
+Each mock result must support:
+
+```text
+Possible issue
+Confidence score
+Risk level
+Category
+Detected symptoms
+Simple explanation
+Alternative possible results
+Treatment steps
+Prevention tips
+Technician advice
+```
+
+---
+
+# 8. Button Behavior Requirements
+
+Every visible button must do something.
+
+No dead buttons.
+
+Minimum expected behavior:
+
+```text
+Primary action buttons navigate to the next screen.
+Back buttons return to the previous logical screen.
+Save buttons show confirmation.
+Submit buttons show submitted state.
+Delete buttons show confirmation first.
+Bottom navigation changes active screen.
+Settings toggles visibly change state.
+```
+
+If real functionality is not available, simulate it.
+
+---
+
+# 9. Form Behavior Requirements
+
+Forms do not need real backend submission.
+
+Forms should:
+
+```text
+Accept typed input
+Have clear labels
+Use placeholder examples
+Show submit action
+Navigate to confirmation/submitted screen
+```
+
+Required forms:
+
+```text
+Technician Support Form
+Report Wrong Result Form
+Manage Consent Form
+Settings Form
+```
+
+Optional form validation:
+
+```text
+Required name/location fields for technician support
+Required explanation field for report wrong result
+Disabled submit button until minimum fields are filled
+```
+
+Keep validation simple.
+
+---
+
+# 10. History and Audit Requirements
+
+The History screen must show governance evidence.
+
+History records should show:
+
+```text
+Date
+Possible issue
+Risk level
+Status
+View Details
+```
+
+Audit trail should show:
+
+```text
+Image checked
+AI result generated
+Recommendation viewed
+Result saved
+Shared with technician
+Technician review requested
+Report submitted
+Deleted by user
+```
+
+Audit logs can be mock data.
+
+Do not make audit logs overly technical.
+
+---
+
+# 11. Accessibility Behavior Requirements
+
+The Settings screen must include accessibility controls.
+
+Minimum behavior:
+
+```text
+Large Text mode increases readable text size.
+High Contrast mode improves text and border contrast.
+Voice Guidance toggle changes on/off state.
+Simple Mode toggle changes on/off state.
+Language selector changes selected option.
+```
+
+These can be simulated locally.
+
+The goal is to visibly demonstrate accessibility, not to fully translate the app.
+
+---
+
+# 12. Privacy and Consent Requirements
+
+The prototype must clearly show privacy and consent.
+
+Required privacy-related screens/states:
+
+```text
+Privacy and Consent
+Privacy Details
+Manage Consent
+Delete Saved Result
+Settings privacy section
+```
+
+Required privacy principles shown in UI:
+
+```text
+Image is used for advisory analysis.
+AI result is not final expert diagnosis.
+Optional sharing should be separate from required analysis.
+User can manage saved data.
+User can delete saved results.
+```
+
+---
+
+# 13. Human-Centered AI Evidence Requirements
+
+The prototype must visibly demonstrate:
+
+```text
+Explainability
+Human override
+Appeal / report wrong result
+Privacy and consent
+Bias and risk awareness
+Accessibility
+Governance and audit trail
+Safe advisory language
+```
+
+These must not be hidden in documentation only. They must appear in the UI screens.
+
+---
+
+# 14. Completion Checklist for Codex
+
+Codex must verify:
+
+```text
+All routes load without blank screens.
+Welcome and consent flow works.
+Home dashboard is reachable.
+Scan flow works.
+Mock image preview works.
+AI loading flow works.
+Result screen supports multiple result states.
+Recommendations are shown.
+Technician review flow works.
+Report wrong result flow works.
+Save result confirmation works.
+History and audit log are visible.
+Result details page works.
+Delete confirmation works.
+Help center works.
+Help article works.
+Common rice problems page works.
+Settings page works.
+Manage consent page works.
+About page works.
+Bottom navigation works.
+No button is dead.
+UI is mobile-first and not cramped.
+HCAI features are visible.
+The app builds successfully for Netlify.
+```
+
+---
+
+# 15. Final Rule
+
+Do not reduce this prototype into only a few screens.
+
+RiceCare AI must feel like a complete mobile advisory system with realistic user flows, not a static slideshow.
+
+Use full screens, conditional states, and simple mock behavior to make the prototype convincing for presentation and final submission.
+
+```

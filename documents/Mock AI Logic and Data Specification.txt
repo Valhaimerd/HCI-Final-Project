@@ -1,0 +1,1111 @@
+Below is **Document 5 of 7: Mock AI Logic and Data Specification** for Codex. This defines how the prototype should simulate AI behavior without building a real CNN model or connecting to an AI API. The project documents describe the AI as an image-based advisory system that returns possible rice pest/disease results, confidence, explanation, treatment, prevention, and human-control options.  
+
+````markdown
+# Document 5: Mock AI Logic and Data Specification for Codex
+
+## Project
+
+RiceCare AI  
+Pest and Disease Advisory for Rice Farmers
+
+## Purpose of This Document
+
+This document explains how Codex should simulate the AI behavior of RiceCare AI.
+
+The prototype must not use a real AI model, real CNN, real training dataset, real backend, or real API.
+
+Instead, the app should use mock AI logic with predefined sample results. This allows the prototype to demonstrate the full Human-Centered AI flow while staying simple enough for GitHub and Netlify deployment.
+
+---
+
+# 1. Main Rule
+
+Use mock AI only.
+
+Do not create or connect:
+
+- Real CNN model
+- Real machine learning training pipeline
+- Python AI backend
+- AI API
+- Database
+- Authentication system
+- Real technician messaging
+- Real disease detection
+
+The AI should be simulated through JavaScript data and simple front-end logic.
+
+---
+
+# 2. Mock AI Flow
+
+The app should simulate this flow:
+
+```text
+User selects or simulates plant image
+→ User clicks Analyze Image
+→ App shows AI Analysis Loading screen
+→ App selects one mock result
+→ App displays AI Result screen
+→ User can view recommendations, save result, ask technician, report wrong result, or retake photo
+````
+
+The mock AI should feel realistic, but it should not pretend to be a real diagnosis.
+
+Always use advisory language.
+
+Correct wording:
+
+```text
+Possible Issue
+May match symptoms
+Advisory result
+Ask technician for confirmation
+```
+
+Avoid:
+
+```text
+Confirmed disease
+Final diagnosis
+Guaranteed result
+Apply treatment now
+```
+
+---
+
+# 3. Required Mock Result Types
+
+Create mock data for these result types:
+
+```text
+1. Rice Blast Disease
+2. Brown Spot
+3. Bacterial Leaf Blight
+4. Possible Pest Damage
+5. Healthy Plant
+6. Uncertain / Low Confidence Result
+```
+
+Each result must include:
+
+```text
+id
+possibleIssue
+category
+confidence
+riskLevel
+summary
+symptoms
+explanation
+alternatives
+treatmentSteps
+preventionTips
+recommendedPractice
+technicianAdvice
+advisoryNote
+riskAwarenessNote
+auditEvents
+```
+
+---
+
+# 4. Suggested File Location
+
+Create this file:
+
+```text
+src/data/mockAiResults.js
+```
+
+This file should export an array of mock AI results.
+
+Example structure:
+
+```js
+export const mockAiResults = [
+  {
+    id: "rice-blast",
+    possibleIssue: "Rice Blast Disease",
+    category: "Disease",
+    confidence: 86,
+    riskLevel: "High",
+    summary: "The image may show symptoms commonly linked to Rice Blast Disease.",
+    symptoms: [
+      "Irregular brown lesions",
+      "Leaf spots",
+      "Damaged leaf areas",
+      "Possible spreading marks on leaves"
+    ],
+    explanation:
+      "The AI detected leaf spots, irregular brown lesions, and damaged leaf areas that may match symptoms of Rice Blast.",
+    alternatives: [
+      { label: "Brown Spot", confidence: 9 },
+      { label: "Bacterial Leaf Blight", confidence: 4 },
+      { label: "Healthy Plant", confidence: 1 }
+    ],
+    treatmentSteps: [
+      "Remove severely infected leaves when possible.",
+      "Avoid excessive nitrogen fertilizer.",
+      "Improve field drainage and airflow.",
+      "Consult an agricultural technician before applying fungicide."
+    ],
+    preventionTips: [
+      "Use resistant rice varieties when available.",
+      "Monitor the field regularly.",
+      "Avoid overcrowding and poor water management.",
+      "Report severe symptoms early."
+    ],
+    recommendedPractice:
+      "Practice regular field inspection and early reporting to reduce crop damage.",
+    technicianAdvice:
+      "Ask a technician before applying chemical treatment, especially when many plants are affected.",
+    advisoryNote:
+      "RiceCare AI provides advisory support only. It is not a final expert diagnosis.",
+    riskAwarenessNote:
+      "Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.",
+    auditEvents: [
+      "Image checked",
+      "AI result generated",
+      "Recommendation viewed"
+    ]
+  }
+];
+```
+
+---
+
+# 5. Complete Mock Result Data
+
+Codex should create complete data for all required result types.
+
+## Result 1: Rice Blast Disease
+
+```js
+{
+  id: "rice-blast",
+  possibleIssue: "Rice Blast Disease",
+  category: "Disease",
+  confidence: 86,
+  riskLevel: "High",
+  summary: "The image may show symptoms commonly linked to Rice Blast Disease.",
+  symptoms: [
+    "Irregular brown lesions",
+    "Leaf spots",
+    "Damaged leaf areas",
+    "Possible spreading marks on leaves"
+  ],
+  explanation:
+    "The AI detected leaf spots, irregular brown lesions, and damaged leaf areas that may match symptoms of Rice Blast.",
+  alternatives: [
+    { label: "Brown Spot", confidence: 9 },
+    { label: "Bacterial Leaf Blight", confidence: 4 },
+    { label: "Healthy Plant", confidence: 1 }
+  ],
+  treatmentSteps: [
+    "Remove severely infected leaves when possible.",
+    "Avoid excessive nitrogen fertilizer.",
+    "Improve field drainage and airflow.",
+    "Consult an agricultural technician before applying fungicide."
+  ],
+  preventionTips: [
+    "Use resistant rice varieties when available.",
+    "Monitor the field regularly.",
+    "Avoid overcrowding and poor water management.",
+    "Report severe symptoms early."
+  ],
+  recommendedPractice:
+    "Check the field regularly and ask for help if the spots spread quickly.",
+  technicianAdvice:
+    "Ask a technician before applying fungicide or any chemical treatment.",
+  advisoryNote:
+    "RiceCare AI provides advisory support only. It is not a final expert diagnosis.",
+  riskAwarenessNote:
+    "Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.",
+  auditEvents: [
+    "Image checked",
+    "AI result generated",
+    "High risk advisory shown"
+  ]
+}
+```
+
+---
+
+## Result 2: Brown Spot
+
+```js
+{
+  id: "brown-spot",
+  possibleIssue: "Brown Spot",
+  category: "Disease",
+  confidence: 74,
+  riskLevel: "Medium",
+  summary: "The image may show symptoms that look similar to Brown Spot.",
+  symptoms: [
+    "Small brown spots on leaves",
+    "Round or oval marks",
+    "Possible yellowing around spots"
+  ],
+  explanation:
+    "The AI noticed small brown marks and discoloration that may match common Brown Spot symptoms.",
+  alternatives: [
+    { label: "Rice Blast Disease", confidence: 14 },
+    { label: "Bacterial Leaf Blight", confidence: 7 },
+    { label: "Healthy Plant", confidence: 5 }
+  ],
+  treatmentSteps: [
+    "Monitor if spots are spreading.",
+    "Improve soil and crop nutrition when needed.",
+    "Avoid plant stress caused by poor water or nutrient management.",
+    "Ask a technician if many leaves are affected."
+  ],
+  preventionTips: [
+    "Use healthy seeds when possible.",
+    "Keep the field clean.",
+    "Maintain proper water management.",
+    "Observe the crop regularly."
+  ],
+  recommendedPractice:
+    "Watch the affected plants for changes and compare with nearby healthy plants.",
+  technicianAdvice:
+    "Ask a technician if the spots spread or the plants weaken.",
+  advisoryNote:
+    "RiceCare AI provides advisory support only. It is not a final expert diagnosis.",
+  riskAwarenessNote:
+    "Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.",
+  auditEvents: [
+    "Image checked",
+    "AI result generated",
+    "Medium risk advisory shown"
+  ]
+}
+```
+
+---
+
+## Result 3: Bacterial Leaf Blight
+
+```js
+{
+  id: "bacterial-leaf-blight",
+  possibleIssue: "Bacterial Leaf Blight",
+  category: "Disease",
+  confidence: 81,
+  riskLevel: "High",
+  summary: "The image may show symptoms similar to Bacterial Leaf Blight.",
+  symptoms: [
+    "Yellowing or drying leaf edges",
+    "Long damaged areas along the leaf",
+    "Possible wilting signs",
+    "Spreading discoloration"
+  ],
+  explanation:
+    "The AI detected leaf edge damage and discoloration patterns that may match Bacterial Leaf Blight symptoms.",
+  alternatives: [
+    { label: "Rice Blast Disease", confidence: 10 },
+    { label: "Brown Spot", confidence: 6 },
+    { label: "Pest Damage", confidence: 3 }
+  ],
+  treatmentSteps: [
+    "Avoid moving through wet fields if disease is spreading.",
+    "Remove or separate heavily affected plant parts when possible.",
+    "Avoid excessive nitrogen fertilizer.",
+    "Consult an agricultural technician for proper confirmation."
+  ],
+  preventionTips: [
+    "Use resistant rice varieties when available.",
+    "Use clean seeds.",
+    "Maintain proper spacing and field hygiene.",
+    "Monitor symptoms after heavy rain or flooding."
+  ],
+  recommendedPractice:
+    "Check nearby plants and report severe spreading symptoms early.",
+  technicianAdvice:
+    "Request technician confirmation if many plants show yellowing or drying leaf edges.",
+  advisoryNote:
+    "RiceCare AI provides advisory support only. It is not a final expert diagnosis.",
+  riskAwarenessNote:
+    "Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.",
+  auditEvents: [
+    "Image checked",
+    "AI result generated",
+    "High risk advisory shown"
+  ]
+}
+```
+
+---
+
+## Result 4: Possible Pest Damage
+
+```js
+{
+  id: "pest-damage",
+  possibleIssue: "Possible Pest Damage",
+  category: "Pest",
+  confidence: 78,
+  riskLevel: "Medium",
+  summary: "The image may show leaf damage caused by pests.",
+  symptoms: [
+    "Chewed or torn leaf areas",
+    "Uneven leaf damage",
+    "Small damaged patches",
+    "Possible feeding marks"
+  ],
+  explanation:
+    "The AI detected damaged leaf areas that may match common pest feeding marks.",
+  alternatives: [
+    { label: "Brown Spot", confidence: 11 },
+    { label: "Rice Blast Disease", confidence: 7 },
+    { label: "Healthy Plant", confidence: 4 }
+  ],
+  treatmentSteps: [
+    "Inspect the plant closely for visible insects or eggs.",
+    "Check if nearby plants have the same damage.",
+    "Remove affected leaves only if damage is severe.",
+    "Ask a technician before using pesticide."
+  ],
+  preventionTips: [
+    "Monitor the field regularly.",
+    "Keep field surroundings clean.",
+    "Encourage proper field sanitation.",
+    "Report unusual pest activity early."
+  ],
+  recommendedPractice:
+    "Observe the field early in the morning or late afternoon when some pests may be more visible.",
+  technicianAdvice:
+    "Ask a technician before applying pesticide, especially if the pest is not clearly identified.",
+  advisoryNote:
+    "RiceCare AI provides advisory support only. It is not a final expert diagnosis.",
+  riskAwarenessNote:
+    "Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.",
+  auditEvents: [
+    "Image checked",
+    "AI result generated",
+    "Pest advisory shown"
+  ]
+}
+```
+
+---
+
+## Result 5: Healthy Plant
+
+```js
+{
+  id: "healthy-plant",
+  possibleIssue: "No major visible issue detected",
+  category: "Healthy",
+  confidence: 91,
+  riskLevel: "Low",
+  summary: "The image does not show strong visible symptoms of pest or disease.",
+  symptoms: [
+    "Leaf color appears normal",
+    "No major spots detected",
+    "No strong visible pest damage",
+    "Plant area appears stable"
+  ],
+  explanation:
+    "RiceCare AI did not detect strong visible symptoms in this image. Continue regular field monitoring.",
+  alternatives: [
+    { label: "Brown Spot", confidence: 4 },
+    { label: "Pest Damage", confidence: 3 },
+    { label: "Rice Blast Disease", confidence: 2 }
+  ],
+  treatmentSteps: [
+    "No immediate treatment is suggested based on this image.",
+    "Continue observing the crop.",
+    "Scan again if symptoms appear.",
+    "Ask a technician if the plant condition changes."
+  ],
+  preventionTips: [
+    "Maintain regular field monitoring.",
+    "Keep proper water management.",
+    "Observe plants after heavy rain or pest activity.",
+    "Compare with nearby plants for early changes."
+  ],
+  recommendedPractice:
+    "Continue normal field care and scan again if new symptoms appear.",
+  technicianAdvice:
+    "Ask a technician if symptoms appear later or if many plants start changing color.",
+  advisoryNote:
+    "RiceCare AI provides advisory support only. It is not a final expert diagnosis.",
+  riskAwarenessNote:
+    "Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.",
+  auditEvents: [
+    "Image checked",
+    "AI result generated",
+    "Low risk advisory shown"
+  ]
+}
+```
+
+---
+
+## Result 6: Uncertain / Low Confidence Result
+
+```js
+{
+  id: "uncertain",
+  possibleIssue: "Uncertain Result",
+  category: "Needs Review",
+  confidence: 48,
+  riskLevel: "Needs Review",
+  summary: "The image does not clearly match one known pest or disease.",
+  symptoms: [
+    "Symptoms are not clear",
+    "Image may be blurry or poorly lit",
+    "Affected area may not be visible enough",
+    "Possible mixed symptoms"
+  ],
+  explanation:
+    "RiceCare AI cannot confidently identify the issue from this image. Please retake the photo or ask a technician for confirmation.",
+  alternatives: [
+    { label: "Brown Spot", confidence: 24 },
+    { label: "Pest Damage", confidence: 18 },
+    { label: "Rice Blast Disease", confidence: 6 }
+  ],
+  treatmentSteps: [
+    "Retake the photo with better lighting.",
+    "Move closer to the affected leaf or stem.",
+    "Check if the affected area is clearly visible.",
+    "Ask a technician before taking treatment action."
+  ],
+  preventionTips: [
+    "Take photos during good daylight.",
+    "Focus on the affected area.",
+    "Avoid blurry or dark images.",
+    "Capture another image if symptoms are unclear."
+  ],
+  recommendedPractice:
+    "Use the photo guide and submit the case for human review if symptoms continue.",
+  technicianAdvice:
+    "Technician review is recommended because the AI confidence is low.",
+  advisoryNote:
+    "RiceCare AI provides advisory support only. It is not a final expert diagnosis.",
+  riskAwarenessNote:
+    "Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.",
+  auditEvents: [
+    "Image checked",
+    "Low confidence result generated",
+    "Human review recommended"
+  ]
+}
+```
+
+---
+
+# 6. Mock Analysis Utility
+
+Create this file:
+
+```text
+src/utils/mockAnalysis.js
+```
+
+It should import the mock result data and return one result.
+
+Suggested code:
+
+```js
+import { mockAiResults } from "../data/mockAiResults";
+
+export function getMockAiResult(mode = "random") {
+  if (mode !== "random") {
+    const selected = mockAiResults.find((result) => result.id === mode);
+    if (selected) return selected;
+  }
+
+  const randomIndex = Math.floor(Math.random() * mockAiResults.length);
+  return mockAiResults[randomIndex];
+}
+```
+
+Codex may also support these mode aliases:
+
+```js
+const modeMap = {
+  "high-risk": "rice-blast",
+  "medium-risk": "brown-spot",
+  "pest": "pest-damage",
+  "healthy": "healthy-plant",
+  "uncertain": "uncertain"
+};
+```
+
+This allows easy testing of different result screens.
+
+---
+
+# 7. Confidence and Risk Rules
+
+Use these rules to display confidence and risk.
+
+```text
+85–100% confidence:
+High confidence
+
+70–84% confidence:
+Moderate confidence
+
+50–69% confidence:
+Low confidence
+
+Below 50% confidence:
+Uncertain result / Needs review
+```
+
+Risk levels:
+
+```text
+Low
+Medium
+High
+Needs Review
+```
+
+Suggested display behavior:
+
+```text
+High Risk:
+Show warning card and recommend technician confirmation.
+
+Medium Risk:
+Show caution card and recommend monitoring or technician help if symptoms spread.
+
+Low Risk:
+Show normal care tips and continued monitoring.
+
+Needs Review:
+Do not force a diagnosis. Recommend retaking photo or asking a technician.
+```
+
+---
+
+# 8. Result Screen Behavior
+
+The AI Result screen must read the current mock result and display:
+
+```text
+Possible issue
+Category
+Confidence score
+Risk level
+Detected symptoms
+Why this result?
+Alternative possible results
+Advisory disclaimer
+Risk awareness note
+```
+
+The screen must also show these actions:
+
+```text
+View Recommendations
+Ask Technician
+Report Wrong Result
+Retake Photo
+```
+
+Special behavior:
+
+```text
+If result is Healthy Plant:
+Primary button can be Save Result or View Care Tips.
+
+If result is Uncertain:
+Primary action should be Retake Photo or Ask Technician.
+
+If result is High Risk:
+Show treatment safety warning and technician advice clearly.
+```
+
+---
+
+# 9. Recommendation Screen Behavior
+
+The Recommendation screen must use the current mock result.
+
+Display:
+
+```text
+For: [possibleIssue]
+Risk badge
+Treatment Steps
+Prevention Tips
+Recommended Practice
+Technician Advice
+Safety Warning
+```
+
+Required actions:
+
+```text
+Save Result
+Share with Technician
+Back to Result
+Back to Home
+```
+
+For high-risk results, include stronger warning:
+
+```text
+Ask a technician before applying chemical treatment, especially when many plants are affected.
+```
+
+For healthy result, use care-focused wording:
+
+```text
+No immediate treatment is suggested based on this image. Continue regular field monitoring.
+```
+
+For uncertain result, use safety-focused wording:
+
+```text
+The result is unclear. Retake the photo or ask a technician before taking action.
+```
+
+---
+
+# 10. Mock Image Behavior
+
+The prototype does not need real image analysis.
+
+For Upload from Gallery:
+
+```text
+Allow user to choose an image if simple to implement.
+Show the selected image in preview.
+If no image is selected, show a rice plant placeholder.
+```
+
+For Take Photo:
+
+```text
+Simulate image capture.
+Show a rice plant placeholder image.
+Continue to image preview.
+```
+
+For poor image state:
+
+```text
+Show Poor Image Warning screen.
+Let user retake photo, open photo guide, or continue anyway.
+```
+
+---
+
+# 11. Sample History Data
+
+Create this file:
+
+```text
+src/data/mockHistory.js
+```
+
+Suggested data:
+
+```js
+export const mockHistory = [
+  {
+    id: "history-001",
+    date: "March 21, 2026",
+    possibleIssue: "Rice Blast Disease",
+    confidence: 86,
+    riskLevel: "High",
+    status: "Under Review",
+    category: "Disease",
+    auditTrail: [
+      "Image checked",
+      "AI result generated",
+      "Recommendation viewed",
+      "Technician review requested"
+    ]
+  },
+  {
+    id: "history-002",
+    date: "March 18, 2026",
+    possibleIssue: "Brown Spot",
+    confidence: 74,
+    riskLevel: "Medium",
+    status: "Shared with Technician",
+    category: "Disease",
+    auditTrail: [
+      "Image checked",
+      "AI result generated",
+      "Recommendation viewed",
+      "Shared with technician"
+    ]
+  },
+  {
+    id: "history-003",
+    date: "March 12, 2026",
+    possibleIssue: "No major visible issue detected",
+    confidence: 91,
+    riskLevel: "Low",
+    status: "Saved",
+    category: "Healthy",
+    auditTrail: [
+      "Image checked",
+      "AI result generated",
+      "Result saved"
+    ]
+  }
+];
+```
+
+If the user saves a new result, add it to local state or localStorage.
+
+If localStorage is empty, still show these sample records so the prototype looks complete during presentation.
+
+---
+
+# 12. Review Request Mock Data
+
+Create this file if needed:
+
+```text
+src/data/mockReviewRequests.js
+```
+
+Suggested object:
+
+```js
+export const mockReviewRequest = {
+  id: "review-001",
+  farmerName: "Sample Farmer",
+  location: "Barangay Sample",
+  description: "Brown spots appeared on many leaves after heavy rain.",
+  contactNumber: "",
+  submittedResult: "Rice Blast Disease",
+  confidence: 86,
+  riskLevel: "High",
+  status: "Under Review",
+  submittedAt: "March 21, 2026, 9:30 AM",
+  timeline: [
+    { label: "Request Submitted", status: "Completed" },
+    { label: "Technician Review", status: "In Progress" },
+    { label: "Recommendation Update", status: "Pending" }
+  ]
+};
+```
+
+The technician review is simulated only.
+
+Do not send real messages.
+
+---
+
+# 13. Audit Trail Rules
+
+Audit trail should be simple and readable.
+
+Use these possible audit events:
+
+```text
+Image selected
+Image checked
+Poor image warning shown
+AI result generated
+Low confidence warning shown
+Recommendation viewed
+Result saved
+Shared with technician
+Technician review requested
+Wrong result reported
+Saved result deleted
+Consent accepted
+Consent settings updated
+```
+
+Audit trail should appear in:
+
+```text
+History screen
+Result Details screen
+Review Status screen
+```
+
+Do not make the audit trail look like a developer log. It should be understandable to farmers and evaluators.
+
+---
+
+# 14. Local Storage Rules
+
+Use localStorage only for prototype persistence.
+
+Suggested keys:
+
+```text
+ricecare_current_result
+ricecare_saved_results
+ricecare_review_requests
+ricecare_accessibility_settings
+ricecare_consent
+```
+
+Rules:
+
+```text
+If localStorage exists, load saved records.
+If localStorage is empty, show sample mock records.
+If localStorage fails, app should still work.
+```
+
+Do not make the app dependent on a backend.
+
+---
+
+# 15. Result Selection for Testing
+
+Codex should make it easy to test different AI results.
+
+Acceptable approaches:
+
+```text
+Option 1:
+Random result every time Analyze Image is clicked.
+
+Option 2:
+Hidden developer/test buttons on the scan page to choose result type.
+
+Option 3:
+Use URL query parameters like /result?mode=healthy or /result?mode=uncertain.
+```
+
+Recommended approach:
+
+Use a small “Prototype Test Mode” selector on the scan screen or image preview screen.
+
+Options:
+
+```text
+Random Result
+Rice Blast Disease
+Brown Spot
+Bacterial Leaf Blight
+Pest Damage
+Healthy Plant
+Uncertain Result
+```
+
+This selector can be subtle, but it helps presenters show different result states.
+
+---
+
+# 16. Common Rice Problems Data
+
+Create:
+
+```text
+src/data/commonRiceProblems.js
+```
+
+Suggested structure:
+
+```js
+export const commonRiceProblems = [
+  {
+    id: "rice-blast",
+    name: "Rice Blast Disease",
+    type: "Disease",
+    commonSigns: [
+      "Brown or gray spots on leaves",
+      "Irregular lesions",
+      "Damaged leaf areas"
+    ],
+    simpleDescription:
+      "Rice Blast can damage leaves and reduce harvest if it spreads.",
+    askTechnicianWhen:
+      "Ask a technician if many plants show spots or the damage spreads quickly."
+  },
+  {
+    id: "brown-spot",
+    name: "Brown Spot",
+    type: "Disease",
+    commonSigns: [
+      "Small brown spots",
+      "Yellowing around marks",
+      "Weak-looking leaves"
+    ],
+    simpleDescription:
+      "Brown Spot may appear when plants are stressed or affected by poor field conditions.",
+    askTechnicianWhen:
+      "Ask a technician if the spots increase or the plants become weak."
+  },
+  {
+    id: "bacterial-leaf-blight",
+    name: "Bacterial Leaf Blight",
+    type: "Disease",
+    commonSigns: [
+      "Yellowing leaf edges",
+      "Drying leaf tips",
+      "Long damaged areas"
+    ],
+    simpleDescription:
+      "Bacterial Leaf Blight can spread and damage many plants if not checked.",
+    askTechnicianWhen:
+      "Ask a technician if symptoms spread after rain or flooding."
+  },
+  {
+    id: "pest-damage",
+    name: "Possible Pest Damage",
+    type: "Pest",
+    commonSigns: [
+      "Chewed leaves",
+      "Uneven holes",
+      "Visible insects or eggs"
+    ],
+    simpleDescription:
+      "Pests may damage leaves, stems, or other plant parts.",
+    askTechnicianWhen:
+      "Ask a technician before using pesticide."
+  }
+];
+```
+
+Keep this section educational, not overly detailed.
+
+---
+
+# 17. Help Article Data
+
+Create:
+
+```text
+src/data/helpArticles.js
+```
+
+Required help articles:
+
+```text
+Understanding AI Results
+How to Take a Clear Photo
+When to Ask a Technician
+Privacy and Image Use
+Frequently Asked Questions
+```
+
+Each article should include:
+
+```text
+id
+title
+summary
+sections
+primaryAction
+secondaryAction
+```
+
+Example:
+
+```js
+export const helpArticles = [
+  {
+    id: "understanding-ai-results",
+    title: "Understanding AI Results",
+    summary: "Learn what possible issue, confidence, and risk level mean.",
+    sections: [
+      {
+        heading: "Possible Issue",
+        body: "This shows what pest or disease the AI thinks may be affecting the rice plant."
+      },
+      {
+        heading: "Confidence Score",
+        body: "Confidence shows how strongly the image matches known symptoms. A high confidence score does not mean the result is always final."
+      },
+      {
+        heading: "Risk Level",
+        body: "Risk level shows how urgent the issue may be. High risk means the farmer should act quickly and ask for confirmation if needed."
+      },
+      {
+        heading: "Why this result?",
+        body: "This explains the visible symptoms noticed by the AI, such as spots, lesions, discoloration, or damaged areas."
+      },
+      {
+        heading: "When to Ask a Technician",
+        body: "Ask a technician if the confidence score is low, the result seems wrong, many plants are affected, or chemical treatment may be needed."
+      }
+    ]
+  }
+];
+```
+
+---
+
+# 18. Safe Advisory Logic
+
+Codex must enforce safe advisory wording.
+
+When risk is high:
+
+```text
+Show technician advice clearly.
+Warn before chemical treatment.
+Do not make treatment sound mandatory.
+```
+
+When confidence is low:
+
+```text
+Recommend retaking the photo.
+Recommend technician review.
+Do not show a strong disease claim.
+```
+
+When result is healthy:
+
+```text
+Encourage continued monitoring.
+Do not say the plant is guaranteed healthy.
+```
+
+When recommending treatment:
+
+```text
+Use cautious wording.
+Include technician confirmation for chemicals.
+```
+
+---
+
+# 19. Acceptance Checklist
+
+Codex must verify:
+
+```text
+Mock AI data exists.
+At least six mock result types exist.
+Analyze Image produces a result.
+Result screen displays the selected result.
+Confidence score is visible.
+Risk level is visible.
+Explanation is visible.
+Alternative possible results are visible.
+Recommendations match the selected result.
+Low-confidence result does not force a diagnosis.
+Healthy result uses low-risk wording.
+High-risk result shows technician advice.
+Save result flow works.
+History shows sample or saved data.
+Audit trail appears in history/details.
+Report wrong result flow works.
+Technician review flow works.
+No real AI or backend dependency exists.
+The app still builds successfully on Netlify.
+```
+
+---
+
+# 20. Final Rule
+
+The mock AI should support the story of the prototype.
+
+It must make the app feel functional, but it must never pretend to be a real deployed agricultural diagnosis system.
+
+RiceCare AI is an advisory prototype. The farmer remains the final decision-maker, and human technician confirmation must always be available.
+
+```
+

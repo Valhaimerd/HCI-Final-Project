@@ -1,0 +1,1188 @@
+Below is **Document 3 of 7: UI/UX Design System Specification** for Codex. This is mainly based on the uploaded UI Design document, which defines the RiceCare AI identity, mobile layout rules, color palette, typography, components, and required farmer-friendly design direction. 
+
+````markdown
+# Document 3: UI/UX Design System Specification for Codex
+
+## Project
+
+RiceCare AI  
+Pest and Disease Advisory for Rice Farmers
+
+## Purpose of This Document
+
+This document defines the required visual design system for the RiceCare AI prototype.
+
+Codex must follow this design system consistently across the entire app.
+
+The final output must look like one complete, polished mobile application, not separate random screens.
+
+---
+
+# 1. Design Goal
+
+Create a clean, simple, farmer-friendly, accessible mobile web app prototype.
+
+The app must feel:
+
+- Practical
+- Calm
+- Trustworthy
+- Agriculture-focused
+- Easy to understand
+- Safe for non-technical users
+
+The app must not look like:
+
+- A social media app
+- A chatbot-only app
+- A sci-fi AI system
+- A complex analytics dashboard
+- A medical diagnosis app
+- A random collection of screens
+
+The user should quickly understand that RiceCare AI helps farmers check possible rice plant pests and diseases, but the AI only gives advisory support.
+
+---
+
+# 2. App Identity
+
+Use the same app identity across all screens.
+
+## App Name
+
+RiceCare AI
+
+## Subtitle
+
+Pest and Disease Advisory for Rice Farmers
+
+## Main Message
+
+AI can help, but human confirmation is available.
+
+## Required Advisory Disclaimer
+
+Use this disclaimer where appropriate:
+
+“RiceCare AI provides advisory support only. It is not a final expert diagnosis.”
+
+## Required Risk Awareness Note
+
+Use this note where appropriate:
+
+“Image quality, lighting, crop variety, and local field conditions may affect AI accuracy.”
+
+---
+
+# 3. Target Visual Style
+
+The visual style should be:
+
+- Mobile-first
+- Clean
+- Warm but not childish
+- Simple but not plain
+- Modern but not futuristic
+- Agriculture-related
+- Easy to read outdoors
+- Comfortable for farmers with low digital literacy
+
+Use green as the dominant color because it connects to agriculture, rice plants, safety, and growth.
+
+Avoid overusing bright colors. Use warning colors only when needed.
+
+---
+
+# 4. Mobile Layout Rules
+
+Use one consistent mobile frame.
+
+Recommended frame:
+
+```text
+Width: 390 px
+Height: 844 px
+Orientation: Portrait
+````
+
+The app must support vertical scrolling.
+
+On desktop preview:
+
+* Center the mobile frame horizontally.
+* Keep the app width between 390 px and 430 px.
+* Use a soft neutral background outside the mobile frame.
+* Do not stretch the app into a wide desktop layout.
+
+On mobile browser:
+
+* Use full viewport width.
+* Avoid horizontal scrolling.
+* Respect safe areas at the top and bottom.
+* Keep buttons easy to tap.
+
+---
+
+# 5. Spacing System
+
+Use an 8-point spacing system.
+
+Recommended values:
+
+```text
+Extra small spacing: 4 px
+Small spacing: 8 px
+Medium spacing: 12 px
+Default spacing: 16 px
+Large spacing: 24 px
+Extra large spacing: 32 px
+```
+
+Screen padding:
+
+```text
+Horizontal screen padding: 24 px
+Vertical section spacing: 16 px to 24 px
+Card internal padding: 16 px
+Spacing between cards: 16 px
+Spacing between related text elements: 8 px to 12 px
+```
+
+Avoid cramped screens.
+
+For long content, use scrollable pages instead of shrinking everything into one view.
+
+---
+
+# 6. Color System
+
+Use this exact color palette.
+
+```css
+:root {
+  --primary-green: #2E7D32;
+  --secondary-light-green: #A5D6A7;
+  --soft-green-background: #F8FAF7;
+
+  --accent-yellow: #FBC02D;
+  --warning-orange: #F57C00;
+  --error-red: #D32F2F;
+  --success-green: #388E3C;
+
+  --card-background: #FFFFFF;
+  --main-background: #F8FAF7;
+
+  --text-dark: #1B1B1B;
+  --text-secondary: #5F6B5F;
+
+  --border-light: #DDE8DD;
+  --disabled-gray: #B8B8B8;
+}
+```
+
+## Color Usage Rules
+
+Primary Green `#2E7D32`
+
+Use for:
+
+* Primary buttons
+* Active navigation tab
+* Important icons
+* Main brand elements
+* Success emphasis when appropriate
+
+Secondary Light Green `#A5D6A7`
+
+Use for:
+
+* Soft highlights
+* Secondary backgrounds
+* Light agricultural accent areas
+
+Soft Green Background `#F8FAF7`
+
+Use as:
+
+* Main app background
+* Page background
+* Calm neutral base
+
+Accent Yellow `#FBC02D`
+
+Use for:
+
+* Medium risk
+* Important tips
+* Mild caution badges
+
+Warning Orange `#F57C00`
+
+Use for:
+
+* High risk warning
+* Report wrong result
+* Treatment caution
+* Urgent but non-error actions
+
+Error Red `#D32F2F`
+
+Use only for:
+
+* Delete result
+* Serious warning
+* Error state
+* Failed action
+
+Success Green `#388E3C`
+
+Use for:
+
+* Saved state
+* Submitted state
+* Completed review step
+* Healthy result when appropriate
+
+---
+
+# 7. Risk Badge Colors
+
+Use consistent risk badge styling.
+
+## Low Risk
+
+```text
+Background: light green
+Text: dark green
+Label: Low Risk
+```
+
+## Medium Risk
+
+```text
+Background: pale yellow or light orange
+Text: dark brown or dark orange
+Label: Medium Risk
+```
+
+## High Risk
+
+```text
+Background: orange or light red
+Text: white or dark red depending on contrast
+Label: High Risk
+```
+
+Never use risk colors randomly. Risk color must match the risk label.
+
+---
+
+# 8. Typography
+
+Use a clean readable sans-serif font.
+
+Preferred fonts:
+
+```text
+Inter
+Roboto
+SF Pro
+System UI fallback
+```
+
+Recommended CSS font stack:
+
+```css
+font-family: Inter, Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+```
+
+## Typography Scale
+
+```text
+Large Title: 28 px, bold
+Screen Title: 22 px, bold
+Section Title: 18 px, semibold
+Card Title: 16 px, semibold
+Body Text: 14–16 px, regular
+Small Helper Text: 12–13 px, regular
+Button Text: 15–16 px, semibold
+Bottom Nav Label: 11–12 px, medium
+```
+
+## Typography Rules
+
+* Keep text readable on mobile.
+* Avoid long paragraphs inside UI cards.
+* Use short explanations.
+* Avoid tiny gray text below 12 px.
+* Use dark text for important information.
+* Use secondary text only for helper text.
+* Do not use too many font weights.
+* Do not use decorative fonts.
+
+---
+
+# 9. Icon Style
+
+Use simple line icons with consistent stroke thickness.
+
+Recommended icon categories:
+
+* Rice leaf
+* Camera
+* Upload image
+* Shield / privacy
+* Person / technician
+* History / document
+* Accessibility
+* Settings
+* Help / question mark
+* Warning / alert
+* Checkmark
+* Home
+* Scan
+* Pest / leaf disease
+* Voice / audio
+* Trash / delete
+
+Icon rules:
+
+* Keep icons simple.
+* Do not mix filled icons and line icons randomly.
+* Use consistent size.
+* Use primary green for main icons.
+* Use warning colors only for warning icons.
+* Do not use overly complex illustrations.
+
+Recommended icon size:
+
+```text
+Small icon: 18–20 px
+Default icon: 22–24 px
+Large icon: 40–56 px
+Welcome logo icon: 72–96 px
+```
+
+---
+
+# 10. Main Layout Structure
+
+Use a consistent app shell.
+
+Each main screen should follow this general structure:
+
+```text
+Mobile App Frame
+├── Header
+├── Scrollable Content Area
+└── Bottom Navigation
+```
+
+Some screens may hide the bottom navigation:
+
+* Welcome
+* Consent
+* AI analysis loading
+* Full-screen confirmation states
+* Modal states where bottom navigation would distract the user
+
+---
+
+# 11. Header Component
+
+Use a consistent header on main screens.
+
+Recommended header:
+
+```text
+Height: around 72 px
+Background: white or transparent over soft green background
+Left side: screen title
+Right side: optional icon button
+No heavy shadows
+```
+
+Examples:
+
+```text
+Home screen title: Hello, Farmer
+Scan screen title: Scan Rice Plant
+Result screen title: Analysis Result
+Settings screen title: Settings
+```
+
+Header rules:
+
+* Keep the title clear.
+* Use dark text.
+* Avoid crowding the header.
+* Use a back button only when needed.
+* Do not use large decorative headers on every screen.
+
+---
+
+# 12. Bottom Navigation Component
+
+Use the same bottom navigation on main app screens.
+
+Tabs:
+
+```text
+Home
+Scan
+History
+Help
+Settings
+```
+
+Each tab must have:
+
+* Icon
+* Label
+* Active state
+* Inactive state
+
+Active tab:
+
+```text
+Icon color: Primary Green #2E7D32
+Text color: Primary Green #2E7D32
+```
+
+Inactive tab:
+
+```text
+Icon color: Text Secondary #5F6B5F
+Text color: Text Secondary #5F6B5F
+```
+
+Bottom nav styling:
+
+```text
+Height: 72–84 px
+Background: white
+Top border: #DDE8DD
+Padding bottom: safe-area compatible
+```
+
+Bottom nav routes:
+
+```text
+Home      → /home
+Scan      → /scan
+History   → /history
+Help      → /help
+Settings  → /settings
+```
+
+---
+
+# 13. Button Components
+
+Use consistent button styles.
+
+## Primary Button
+
+Use for main actions.
+
+Examples:
+
+```text
+Get Started
+I Agree and Continue
+Analyze Image
+View Recommendations
+Save Result
+Submit for Review
+Save Settings
+```
+
+Style:
+
+```text
+Width: 100%
+Height: 48–52 px
+Background: #2E7D32
+Text: white
+Border radius: 14 px
+Font size: 15–16 px
+Font weight: semibold
+Border: none
+```
+
+## Secondary Button
+
+Use for supporting actions.
+
+Examples:
+
+```text
+Upload from Gallery
+Ask Technician
+Retake Photo
+Back to Home
+View Details
+```
+
+Style:
+
+```text
+Width: 100%
+Height: 48 px
+Background: white or light green
+Text: #2E7D32
+Border: 1 px solid #2E7D32 or #DDE8DD
+Border radius: 14 px
+Font size: 15–16 px
+Font weight: semibold
+```
+
+## Warning Button
+
+Use for report or caution actions.
+
+Examples:
+
+```text
+Report Wrong Result
+Request Human Review
+Continue with Caution
+```
+
+Style options:
+
+```text
+Option A:
+Background: #F57C00
+Text: white
+
+Option B:
+Background: white
+Text: #F57C00
+Border: 1 px solid #F57C00
+```
+
+## Danger Button
+
+Use only for destructive actions.
+
+Examples:
+
+```text
+Delete Result
+Clear Saved History
+```
+
+Style:
+
+```text
+Background: white or #D32F2F
+Text: #D32F2F or white
+Border: 1 px solid #D32F2F
+```
+
+## Text Button
+
+Use for low-priority navigation.
+
+Examples:
+
+```text
+Learn about privacy
+Back to History
+Need help taking a photo?
+```
+
+Style:
+
+```text
+Text color: #2E7D32
+No background
+No heavy decoration
+```
+
+---
+
+# 14. Card Component
+
+Use cards for grouped information.
+
+Style:
+
+```text
+Background: #FFFFFF
+Border: 1 px solid #DDE8DD
+Border radius: 18 px
+Padding: 16 px
+Soft shadow or no heavy shadow
+```
+
+Recommended CSS shadow:
+
+```css
+box-shadow: 0 6px 18px rgba(27, 27, 27, 0.04);
+```
+
+Use cards for:
+
+* Scan instructions
+* Result summaries
+* Recommendations
+* Consent checklist
+* Help articles
+* History records
+* Technician forms
+* Audit trail
+* Settings groups
+
+Card rules:
+
+* One main idea per card.
+* Do not overload cards with long paragraphs.
+* Use clear section titles.
+* Use badges for status.
+* Use icons only when helpful.
+
+---
+
+# 15. Form Fields
+
+Use rounded form fields.
+
+Style:
+
+```text
+Height: 48–52 px
+Border: 1 px solid #DDE8DD
+Border radius: 14 px
+Background: white
+Padding: 12–14 px
+Label above field
+Placeholder in secondary gray
+```
+
+Textarea style:
+
+```text
+Minimum height: 96–120 px
+Resizable: none or vertical
+```
+
+Use form fields for:
+
+* Farmer name
+* Location / Barangay
+* Short description
+* Optional contact number
+* Report wrong result explanation
+
+Form rules:
+
+* Labels must be clear.
+* Avoid technical wording.
+* Optional fields must be marked as optional.
+* Use helper text only when needed.
+* Do not create long forms.
+
+---
+
+# 16. Status Badge Component
+
+Use badges for quick status reading.
+
+Examples:
+
+```text
+High Risk
+Medium Risk
+Low Risk
+Saved
+Under Review
+Reviewed
+Shared with Technician
+Image Checked
+Recommendation Viewed
+AI Advisory
+Low Confidence
+```
+
+Badge style:
+
+```text
+Border radius: 999 px
+Padding: 6 px 10 px
+Font size: 12 px
+Font weight: semibold
+```
+
+Badge rules:
+
+* Keep labels short.
+* Use consistent color by meaning.
+* Do not overuse badges.
+* Important statuses should be visible near titles.
+
+---
+
+# 17. Confidence Indicator
+
+Use a progress bar or circular indicator to show confidence.
+
+Preferred style:
+
+```text
+Horizontal confidence bar
+Label: 86% Confidence
+Bar background: #DDE8DD
+Bar fill: #2E7D32 for normal/high confidence
+Bar fill: #FBC02D for medium confidence
+Bar fill: #F57C00 for low or uncertain confidence
+```
+
+Rules:
+
+* Confidence must not imply certainty.
+* Always pair confidence with advisory language.
+* Low confidence must suggest retake photo or technician review.
+
+Example text:
+
+```text
+86% Confidence
+The image strongly matches known symptoms, but this is still advisory support only.
+```
+
+---
+
+# 18. AI Result Layout
+
+The AI result screen is one of the most important screens.
+
+It must show:
+
+* Possible issue
+* Confidence score
+* Risk level
+* Category: Disease / Pest / Healthy / Uncertain
+* Image preview
+* Highlighted symptom areas
+* “Why this result?” explanation
+* Alternative possible results
+* Advisory disclaimer
+* Risk awareness note
+* Actions
+
+Recommended order:
+
+```text
+Header: Analysis Result
+
+Result Summary Card
+- Possible Issue
+- Risk Badge
+- Confidence Indicator
+
+Image Preview Card
+- Plant image placeholder
+- Highlighted symptom areas
+- Label: Detected symptom areas
+
+Explainability Card
+- Why this result?
+- Symptoms detected
+- Simple explanation
+
+Alternative Results Card
+- Other possible matches
+
+Safety Note Card
+- Advisory disclaimer
+- Risk awareness note
+
+Action Buttons
+- View Recommendations
+- Ask Technician
+- Report Wrong Result
+- Retake Photo
+```
+
+Do not show only a disease name. That would fail the explainability requirement.
+
+---
+
+# 19. Recommendation Layout
+
+Recommendations must be practical and easy to read.
+
+Use separate cards:
+
+```text
+Treatment Steps
+Prevention Tips
+Recommended Farming Practice
+Safety Warning
+```
+
+Use numbered steps or short bullet-like rows.
+
+Do not create long paragraphs.
+
+Example:
+
+```text
+Treatment Steps
+1. Remove severely infected leaves when possible.
+2. Avoid excessive nitrogen fertilizer.
+3. Improve field drainage and airflow.
+4. Consult a technician before applying fungicide.
+```
+
+Use a warning card for chemical treatment advice.
+
+---
+
+# 20. Technician Review Layout
+
+Technician review screens must show human override clearly.
+
+The screen should communicate:
+
+```text
+The farmer may disagree with the AI.
+The farmer can request human confirmation.
+The AI result is not final.
+Human review improves safety and trust.
+```
+
+Required elements:
+
+* AI summary card
+* Farmer name field
+* Location / Barangay field
+* Short description field
+* Optional contact number
+* Uploaded image preview
+* Submit for Review button
+* Retake Photo button
+
+Status screens should show:
+
+* Under Review
+* Submitted date
+* Submitted result
+* Risk level
+* Timeline steps
+
+---
+
+# 21. History and Audit Layout
+
+History must show saved results and governance/audit trail.
+
+History card should include:
+
+```text
+Date
+Possible issue
+Risk level
+Status
+View Details button
+```
+
+Audit trail should include events such as:
+
+```text
+Image checked
+AI result generated
+Recommendation viewed
+Result saved
+Shared with technician
+Technician review requested
+```
+
+Use timeline or stacked audit labels.
+
+The audit trail should feel simple, not like a technical log file.
+
+---
+
+# 22. Help Center Layout
+
+Help Center should use stacked help cards.
+
+Help card examples:
+
+```text
+How to Scan a Rice Plant
+How to Take a Clear Photo
+Understanding Your Result
+When to Ask a Technician
+Common Rice Plant Problems
+Privacy and Image Use
+Frequently Asked Questions
+Report App Problem
+```
+
+Each help card should include:
+
+* Icon
+* Title
+* Short description
+* Arrow or View button
+
+Keep the Help Center scannable.
+
+---
+
+# 23. Settings Layout
+
+Settings should be split into clear sections.
+
+## Accessibility Section
+
+Include:
+
+```text
+Text Size: Normal / Large
+Language: English / Filipino / Local Language
+Voice Guidance: On / Off
+High Contrast Mode: On / Off
+Simple Mode: On / Off
+```
+
+## Privacy and Saved Data Section
+
+Include:
+
+```text
+Manage consent
+View privacy information
+Delete saved scan history
+Manage technician contact
+About RiceCare AI
+```
+
+Use clean setting rows with toggles, segmented controls, or buttons.
+
+Settings must be scrollable if content becomes long.
+
+---
+
+# 24. Accessibility Design Rules
+
+The app must support accessibility visually and functionally.
+
+Minimum rules:
+
+* Use readable font sizes.
+* Do not use tiny gray text for important content.
+* Buttons must be large enough to tap.
+* Color contrast must be strong enough.
+* Icons should support text, not replace it.
+* High contrast mode should visibly improve contrast.
+* Large text mode should increase readable text.
+* Simple mode should reduce clutter where possible.
+
+Avoid relying on color alone.
+
+Example:
+
+Do not show only a red badge. Also write “High Risk.”
+
+---
+
+# 25. High Contrast Mode
+
+When High Contrast Mode is active:
+
+* Make text darker.
+* Make borders stronger.
+* Reduce pale low-contrast text.
+* Increase button contrast.
+* Keep backgrounds clean.
+
+Suggested CSS class:
+
+```css
+.high-contrast {
+  --text-dark: #000000;
+  --text-secondary: #2F3A2F;
+  --border-light: #8AA58A;
+  --main-background: #FFFFFF;
+  --card-background: #FFFFFF;
+}
+```
+
+---
+
+# 26. Large Text Mode
+
+When Large Text Mode is active:
+
+* Increase body text.
+* Increase helper text slightly.
+* Increase button text.
+* Preserve layout spacing.
+
+Suggested behavior:
+
+```text
+Body text: +2 px
+Button text: +1–2 px
+Small helper text: +1 px
+```
+
+Do not break the layout when text size increases.
+
+---
+
+# 27. Simple Mode
+
+When Simple Mode is active:
+
+* Reduce non-essential helper text.
+* Keep primary actions visible.
+* Prefer shorter explanations.
+* Keep warnings and advisory notes visible.
+* Do not remove safety information.
+
+Simple Mode should make the app easier, not less safe.
+
+---
+
+# 28. Image and Illustration Style
+
+Use simple placeholder illustrations if real images are not available.
+
+Recommended visuals:
+
+* Rice leaf icon
+* Rice plant image placeholder
+* Camera frame illustration
+* Detected symptom markers
+* Technician support icon
+* Shield privacy icon
+
+Image rules:
+
+* Do not use random stock images with inconsistent style.
+* Do not use dark or scary disease graphics.
+* Use rounded image containers.
+* Add labels when showing highlighted symptom areas.
+* Use simple circles or outline boxes for detected areas.
+
+---
+
+# 29. Advisory Language Rules
+
+The UI must be careful with AI claims.
+
+Use:
+
+```text
+Possible Issue
+May match symptoms
+Advisory result
+Ask technician
+Human confirmation
+Risk level
+Confidence score
+```
+
+Avoid:
+
+```text
+Final diagnosis
+Guaranteed result
+The AI knows
+Treatment required
+Apply chemical now
+Disease confirmed
+```
+
+The app must never pressure the farmer to apply chemical treatment without technician confirmation.
+
+---
+
+# 30. Page Length and Scrolling
+
+Do not force all content into one screen.
+
+Use scrollable layouts for:
+
+* Result details
+* Recommendations
+* Help articles
+* Settings
+* History
+* Consent details
+
+Important buttons may be placed near the bottom, but make sure they are easy to reach.
+
+For very long pages, group content into cards.
+
+---
+
+# 31. Animation and Interaction Style
+
+Use small, calm interactions only.
+
+Acceptable:
+
+* Loading spinner
+* Progress bar
+* Gentle card fade-in
+* Button hover/pressed state
+* Step progress in analysis screen
+
+Avoid:
+
+* Excessive animations
+* Flashing effects
+* Fast motion
+* Distracting AI effects
+* Game-like transitions
+
+This is a practical agricultural tool.
+
+---
+
+# 32. Required UI Consistency Rules
+
+Codex must ensure:
+
+* Same color palette across all screens
+* Same button styles
+* Same card style
+* Same bottom navigation
+* Same typography scale
+* Same spacing system
+* Same app tone
+* Same advisory language
+* Same mobile frame width
+* No disconnected screen designs
+
+The prototype must feel like one real mobile app.
+
+---
+
+# 33. Visual Quality Checklist
+
+Before finishing, verify:
+
+* The welcome screen clearly introduces RiceCare AI.
+* The consent screen is readable and not intimidating.
+* The home dashboard makes scanning the main action.
+* The scan screen is simple and practical.
+* The result screen shows explanation, confidence, risk, and user control.
+* The recommendation screen uses short practical steps.
+* The technician review flow clearly shows human confirmation.
+* The history screen includes audit trail evidence.
+* The help screens are easy to scan.
+* The settings screen visibly supports accessibility and privacy.
+* The bottom navigation works consistently.
+* The mobile layout is not cramped.
+* The app looks polished enough for a final class prototype.
+
+```
+
