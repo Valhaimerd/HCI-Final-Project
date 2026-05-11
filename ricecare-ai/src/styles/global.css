@@ -22,13 +22,15 @@ body::-webkit-scrollbar {
 }
 
 body {
-  background: #E8EFE7;
+  background: #DCE9DC;
   color: var(--text-dark);
   font-size: var(--body-size);
-  line-height: 1.45;
+  line-height: 1.48;
   overflow-wrap: break-word;
   overflow: hidden;
   overscroll-behavior: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -41,6 +43,7 @@ input,
 textarea,
 select {
   font: inherit;
+  color: inherit;
 }
 
 button,
@@ -56,7 +59,7 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 3px solid rgba(46, 125, 50, 0.35);
+  outline: 3px solid rgba(36, 126, 120, 0.34);
   outline-offset: 2px;
 }
 
@@ -68,8 +71,8 @@ p {
 }
 
 h2 {
-  font-size: 22px;
-  line-height: 1.2;
+  font-size: 21px;
+  line-height: 1.18;
 }
 
 h3 {
@@ -94,8 +97,8 @@ strong {
   display: flex;
   justify-content: center;
   background:
-    radial-gradient(circle at top left, rgba(165, 214, 167, 0.25), transparent 32%),
-    #E8EFE7;
+    linear-gradient(135deg, rgba(23, 107, 69, 0.16), rgba(230, 185, 63, 0.12) 44%, rgba(36, 126, 120, 0.14)),
+    #DCE9DC;
   overflow: hidden;
 }
 
@@ -106,7 +109,9 @@ strong {
   min-height: 100svh;
   position: relative;
   background: var(--main-background);
-  box-shadow: 0 0 0 1px rgba(46, 125, 50, 0.06), 0 18px 60px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(23, 107, 69, 0.08),
+    0 24px 80px rgba(16, 42, 28, 0.16);
   overflow: hidden;
 }
 

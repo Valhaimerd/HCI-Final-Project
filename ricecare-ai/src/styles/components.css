@@ -3022,3 +3022,998 @@
     box-shadow: inset 0 0 0 4px #E5F2E1, 0 0 0 5px rgba(46, 125, 50, 0.12);
   }
 }
+
+/* Premium mobile prototype refresh */
+.card,
+.history-result-card,
+.history-audit-card,
+.detail-summary-card,
+.detail-reason-card,
+.detail-timeline-card,
+.recommendation-card,
+.result-image-card,
+.result-explain-card,
+.review-preview-card,
+.review-check-card,
+.photo-guide-card,
+.settings-panel,
+.help-guide-card,
+.consent-option,
+.consent-privacy-card,
+.scan-check-card,
+.scan-test-card {
+  border: 1px solid rgba(190, 210, 190, 0.82);
+  border-radius: var(--radius-md);
+  background: var(--card-background);
+  box-shadow: var(--shadow-soft);
+}
+
+.card {
+  padding: 18px;
+  gap: 12px;
+}
+
+.card h2,
+.card h3,
+.settings-section h2,
+.history-audit-card h2,
+.detail-timeline-card h2,
+.result-card-title h2,
+.recommendation-card-title h3 {
+  color: var(--text-dark);
+  font-weight: 850;
+}
+
+.card p,
+.card li,
+.field span,
+.field input,
+.field textarea,
+.select-field,
+.settings-row-copy small,
+.help-guide-copy small {
+  color: var(--text-secondary);
+}
+
+.button,
+.result-primary-action,
+.result-outline-action,
+.detail-primary-action,
+.detail-secondary-action,
+.detail-danger-action,
+.recommendation-share-action,
+.recommendation-save-action,
+.recommendation-home-action {
+  min-height: 54px;
+  border-radius: var(--radius-pill);
+  font-weight: 850;
+  letter-spacing: 0;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease;
+}
+
+.button-primary,
+.result-primary-action,
+.detail-primary-action,
+.recommendation-share-action {
+  background: linear-gradient(180deg, var(--primary-green), var(--primary-green-dark));
+  color: white;
+  border-color: rgba(13, 77, 50, 0.16);
+  box-shadow: var(--shadow-button);
+}
+
+.button-primary .icon,
+.result-primary-action .icon,
+.detail-primary-action .icon,
+.recommendation-share-action .icon {
+  filter: brightness(0) invert(1);
+}
+
+.button-secondary,
+.button-warning,
+.button-danger,
+.result-outline-action,
+.detail-secondary-action,
+.recommendation-save-action,
+.recommendation-home-action {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 7px 18px rgba(23, 62, 42, 0.06);
+}
+
+.button-secondary,
+.result-outline-action,
+.detail-secondary-action,
+.recommendation-save-action {
+  border-color: rgba(23, 107, 69, 0.36);
+  color: var(--primary-green-dark);
+}
+
+.button-warning {
+  border-color: rgba(185, 106, 22, 0.42);
+  color: #8D4C09;
+  background: var(--warning-soft);
+}
+
+.button-danger,
+.detail-danger-action {
+  border-color: rgba(180, 35, 42, 0.26);
+  color: var(--error-red);
+  background: #FFF8F6;
+}
+
+.button-text {
+  min-height: 42px;
+  color: var(--primary-green-dark);
+  background: transparent;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.button:active,
+.nav-tab:active,
+.help-guide-card:active,
+.dashboard-tile:active,
+.dashboard-technician-card:active,
+.history-result-card:active {
+  transform: scale(0.985);
+}
+
+.icon-button,
+.screen-icon-button,
+.guide-logo,
+.guide-help-badge,
+.dashboard-help-icon,
+.analyzing-brand-icon {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(190, 210, 190, 0.78);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 7px 18px rgba(23, 62, 42, 0.07);
+}
+
+.icon-button .icon,
+.screen-icon-button .icon,
+.guide-logo .icon,
+.guide-help-badge .icon,
+.dashboard-help-icon .icon,
+.analyzing-brand-icon .icon,
+.dashboard-logo .icon,
+.settings-row-icon .icon,
+.result-card-title .icon,
+.detail-card-title .icon,
+.recommendation-card-icon .icon {
+  filter: brightness(0) saturate(100%) invert(29%) sepia(25%) saturate(1247%) hue-rotate(101deg) brightness(91%) contrast(91%);
+}
+
+.bottom-nav {
+  min-height: 86px;
+  gap: 4px;
+  padding: 9px 10px calc(10px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(190, 210, 190, 0.86);
+  background: rgba(250, 252, 248, 0.95);
+  box-shadow: 0 -14px 34px rgba(23, 62, 42, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.nav-tab {
+  min-height: 62px;
+  border-radius: 18px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.nav-tab .icon {
+  width: 21px;
+  height: 21px;
+  filter: brightness(0) saturate(100%) invert(39%) sepia(9%) saturate(594%) hue-rotate(72deg) brightness(91%) contrast(88%);
+}
+
+.nav-tab.active {
+  color: white;
+  background: linear-gradient(180deg, var(--primary-green), var(--primary-green-dark));
+  box-shadow: 0 10px 20px rgba(23, 107, 69, 0.24);
+}
+
+.badge,
+.risk-badge,
+.history-risk-pill,
+.detail-risk-pill,
+.result-risk-pill,
+.recommendation-risk-pill {
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-weight: 850;
+  box-shadow: 0 5px 14px rgba(23, 62, 42, 0.05);
+}
+
+.badge-neutral {
+  color: var(--text-secondary);
+  background: #F2F6F1;
+  border-color: rgba(190, 210, 190, 0.7);
+}
+
+.badge-success,
+.risk-low,
+.history-risk-pill.low,
+.detail-risk-pill.low,
+.result-risk-pill.low,
+.recommendation-risk-pill.low {
+  color: #0E5E35;
+  background: #DFF4E7;
+  border-color: #B7E4C8;
+}
+
+.risk-medium,
+.history-risk-pill.medium,
+.detail-risk-pill.medium,
+.result-risk-pill.medium,
+.recommendation-risk-pill.medium {
+  color: #764008;
+  background: #FFEAC2;
+  border-color: #F4CA75;
+}
+
+.risk-high,
+.history-risk-pill.high,
+.detail-risk-pill.high,
+.result-risk-pill.high,
+.recommendation-risk-pill.high {
+  color: white;
+  background: linear-gradient(180deg, #C83B40, var(--error-red));
+  border-color: rgba(180, 35, 42, 0.24);
+}
+
+.risk-review,
+.history-risk-pill.review,
+.detail-risk-pill.review,
+.result-risk-pill.review,
+.recommendation-risk-pill.review {
+  color: #6D3F03;
+  background: #FFF1D7;
+  border-color: #F2C476;
+}
+
+.field {
+  gap: 8px;
+  color: var(--text-dark);
+  font-weight: 800;
+}
+
+.field input,
+.field textarea,
+.select-field,
+.settings-select {
+  min-height: 52px;
+  border: 1px solid rgba(190, 210, 190, 0.9);
+  border-radius: var(--radius-sm);
+  background: #FBFDF9;
+  color: var(--text-dark);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #8A968B;
+}
+
+.toggle-row,
+.choice-row,
+.settings-row {
+  border-bottom-color: rgba(217, 229, 215, 0.92);
+}
+
+.toggle-row input,
+.choice-row input {
+  accent-color: var(--primary-green);
+}
+
+.notice {
+  border-radius: var(--radius-md);
+  background: var(--info-soft);
+  border-color: rgba(36, 126, 120, 0.22);
+}
+
+.notice p {
+  color: #254D49;
+}
+
+.notice-warning,
+.recommendations-important,
+.result-warning-note,
+.review-warning,
+.scan-warning {
+  background: var(--warning-soft);
+  border-color: rgba(185, 106, 22, 0.32);
+  color: #6D3F03;
+}
+
+.notice-warning p,
+.recommendations-important h3,
+.recommendations-important p,
+.result-warning-note p,
+.review-warning p,
+.scan-warning,
+.scan-warning strong {
+  color: #6D3F03;
+}
+
+.dashboard-brand,
+.guide-brand,
+.settings-topbar,
+.guide-topbar,
+.analyzing-brand {
+  box-shadow: 0 9px 24px rgba(23, 62, 42, 0.04);
+}
+
+.dashboard-logo {
+  gap: 9px;
+  color: var(--primary-green-dark);
+}
+
+.dashboard-intro h1,
+.scan-intro h1,
+.history-intro h1,
+.analyzing-intro h1,
+.help-intro h1,
+.photo-guide-intro h2,
+.review-intro h2,
+.recommendations-intro h2 {
+  color: var(--text-dark);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.dashboard-intro p,
+.scan-intro p,
+.history-intro p,
+.help-intro p,
+.photo-guide-intro p,
+.review-intro p,
+.recommendations-for-row p {
+  color: var(--text-secondary);
+}
+
+.dashboard-scan-card {
+  min-height: 194px;
+  border-radius: var(--radius-lg);
+  border-color: rgba(190, 210, 190, 0.88);
+  box-shadow: var(--shadow-card);
+}
+
+.dashboard-scan-image {
+  background:
+    linear-gradient(90deg, rgba(248, 252, 246, 0.96), rgba(248, 252, 246, 0.7) 48%, rgba(13, 77, 50, 0.08)),
+    url("/images/dashboard-rice.jpg") center / cover;
+}
+
+.dashboard-scan-content {
+  gap: 10px;
+  padding: 20px 17px 17px;
+}
+
+.dashboard-scan-content h2 {
+  max-width: 230px;
+  color: var(--text-dark);
+  font-size: 21px;
+}
+
+.dashboard-scan-content p {
+  color: var(--text-secondary);
+}
+
+.dashboard-scan-content .button {
+  width: max-content;
+  min-width: 172px;
+  min-height: 50px;
+  margin-top: 10px;
+  padding-inline: 18px;
+}
+
+.dashboard-tile {
+  min-height: 156px;
+  border-radius: var(--radius-md);
+  border-color: rgba(190, 210, 190, 0.82);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 250, 243, 0.96));
+  box-shadow: var(--shadow-soft);
+}
+
+.dashboard-tile strong {
+  color: var(--text-dark);
+  font-size: 16px;
+}
+
+.dashboard-icon-badge,
+.help-guide-icon,
+.settings-row-icon,
+.detail-summary-icon,
+.recommendation-card-icon,
+.consent-icon-badge {
+  background: var(--primary-green-soft);
+  box-shadow: inset 0 0 0 1px rgba(23, 107, 69, 0.08);
+}
+
+.dashboard-icon-badge-green {
+  background: #D4F2DD;
+}
+
+.dashboard-technician-card {
+  min-height: 98px;
+  border-radius: var(--radius-md);
+  border-color: rgba(36, 126, 120, 0.2);
+  background:
+    linear-gradient(135deg, rgba(225, 243, 241, 0.9), rgba(255, 255, 255, 0.96));
+  box-shadow: var(--shadow-soft);
+}
+
+.dashboard-technician-card small,
+.dashboard-small-card,
+.dashboard-tip p {
+  color: var(--text-secondary);
+}
+
+.dashboard-small-card {
+  border-radius: var(--radius-md);
+  border-color: rgba(190, 210, 190, 0.82);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 20px rgba(23, 62, 42, 0.06);
+  font-weight: 750;
+}
+
+.dashboard-tip {
+  margin-top: 14px;
+  border-radius: var(--radius-md);
+  border-color: rgba(230, 185, 63, 0.34);
+  background: #FFF9E8;
+  box-shadow: 0 8px 20px rgba(103, 75, 12, 0.05);
+}
+
+.scan-camera-card {
+  height: 430px;
+  border-radius: 28px;
+  border-color: rgba(13, 77, 50, 0.2);
+  background:
+    linear-gradient(180deg, rgba(9, 33, 20, 0.05), rgba(9, 33, 20, 0.18)),
+    url("/images/scan-rice.jpg") center / cover;
+  box-shadow: 0 16px 38px rgba(16, 42, 28, 0.16);
+}
+
+.scan-camera-card::after {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.2)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: auto, 54px 54px, 54px 54px;
+}
+
+.scan-focus-frame {
+  inset: 58px 45px 72px;
+  border: 2px solid rgba(217, 255, 225, 0.96);
+  border-radius: 36px;
+  box-shadow:
+    0 0 0 999px rgba(7, 31, 17, 0.08),
+    0 0 28px rgba(255, 255, 255, 0.16);
+}
+
+.scan-bolt-badge {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.84);
+  box-shadow: 0 10px 26px rgba(9, 33, 20, 0.16);
+}
+
+.scan-control-button {
+  width: 58px;
+  height: 58px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 8px 18px rgba(9, 33, 20, 0.18);
+}
+
+.scan-control-button.active {
+  background: var(--accent-yellow);
+}
+
+.scan-shutter-button {
+  width: 82px;
+  height: 82px;
+  border: 5px solid rgba(255, 255, 255, 0.94);
+  background: linear-gradient(180deg, #2D9860, var(--primary-green-dark));
+  box-shadow: 0 12px 28px rgba(9, 33, 20, 0.25);
+}
+
+.scan-warning {
+  min-height: 42px;
+  border-radius: var(--radius-pill);
+  box-shadow: none;
+}
+
+.scan-check-card,
+.scan-test-card,
+.review-check-card {
+  padding: 18px;
+}
+
+.scan-check-card h2,
+.scan-test-card h2,
+.review-check-card h2 {
+  font-size: 19px;
+}
+
+.scan-check-list li {
+  color: var(--text-secondary);
+}
+
+.scan-check-list .icon,
+.recommendation-check-list .icon,
+.detail-reason-card li .icon {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(67%) saturate(516%) hue-rotate(99deg) brightness(88%) contrast(89%);
+}
+
+.scan-actions .button-primary {
+  background: linear-gradient(180deg, var(--primary-green), var(--primary-green-dark));
+  border-radius: var(--radius-pill);
+}
+
+.analyzing-preview,
+.review-image,
+.result-image,
+.detail-hero-card,
+.photo-guide-image,
+.plant-preview,
+.history-result-image {
+  border-radius: var(--radius-md);
+}
+
+.analyzing-preview {
+  border-color: rgba(13, 77, 50, 0.18);
+  box-shadow: var(--shadow-card);
+}
+
+.analysis-progress-card {
+  border-radius: var(--radius-md);
+}
+
+.analysis-progress-heading strong,
+.detail-confidence strong,
+.result-confidence-box strong {
+  color: var(--primary-green-dark);
+}
+
+.analysis-progress-track,
+.confidence-track,
+.detail-confidence-track {
+  background: #DCEBDD;
+}
+
+.analysis-progress-fill,
+.detail-confidence-track span {
+  background: linear-gradient(90deg, var(--primary-green), var(--info-teal));
+}
+
+.review-preview-card {
+  padding: 12px;
+}
+
+.review-image {
+  height: 330px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.review-ready-pill {
+  border: 1px solid #B7E4C8;
+  background: #E5F7EB;
+  color: #0E5E35;
+}
+
+.review-warning,
+.recommendations-important,
+.result-advisory-note,
+.result-warning-note {
+  border-radius: var(--radius-md);
+}
+
+.photo-guide-card {
+  overflow: hidden;
+  padding: 0;
+}
+
+.photo-guide-image {
+  height: 186px;
+}
+
+.photo-guide-copy {
+  padding: 18px;
+}
+
+.photo-guide-copy h3 {
+  color: var(--text-dark);
+}
+
+.photo-guide-copy li {
+  color: var(--text-secondary);
+}
+
+.photo-status-badge {
+  box-shadow: 0 8px 20px rgba(23, 62, 42, 0.12);
+}
+
+.result-issue-card {
+  border-radius: 24px;
+  border: 1px solid rgba(190, 210, 190, 0.82);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 248, 237, 0.96));
+  box-shadow: var(--shadow-card);
+}
+
+.result-issue-card.high {
+  border-color: rgba(180, 35, 42, 0.24);
+}
+
+.result-issue-card.medium {
+  border-color: rgba(230, 185, 63, 0.34);
+}
+
+.result-issue-card.low {
+  border-color: rgba(35, 134, 79, 0.24);
+}
+
+.result-issue-heading > span,
+.result-confidence-box span:not(.result-confidence-icon) {
+  color: var(--text-secondary);
+}
+
+.result-issue-card h2 {
+  color: var(--text-dark);
+  font-size: 27px;
+}
+
+.result-confidence-box {
+  border: 1px solid rgba(190, 210, 190, 0.76);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.result-confidence-icon {
+  background: var(--primary-green-soft);
+}
+
+.result-image-card,
+.result-explain-card {
+  padding: 18px;
+}
+
+.result-image {
+  height: 296px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+
+.result-hotspot {
+  background: rgba(255, 240, 222, 0.88);
+  border: 2px solid var(--warning-orange);
+  box-shadow:
+    0 0 0 5px rgba(185, 106, 22, 0.16),
+    0 5px 15px rgba(9, 33, 20, 0.18);
+}
+
+.result-hotspot.primary {
+  border-color: var(--error-red);
+  background: rgba(255, 231, 228, 0.95);
+  box-shadow:
+    0 0 0 7px rgba(180, 35, 42, 0.14),
+    0 8px 20px rgba(9, 33, 20, 0.2);
+}
+
+.result-explain-card > p {
+  color: var(--text-secondary);
+}
+
+.result-advisory-note {
+  background: var(--info-soft);
+  border-color: rgba(36, 126, 120, 0.22);
+}
+
+.result-advisory-note p {
+  color: #254D49;
+}
+
+.result-secondary-grid,
+.recommendation-secondary-actions {
+  gap: 10px;
+}
+
+.recommendations-important {
+  box-shadow: 0 8px 20px rgba(103, 75, 12, 0.05);
+}
+
+.recommendation-card {
+  padding: 18px;
+  overflow: hidden;
+}
+
+.recommendation-card::after {
+  width: 118px;
+  height: 118px;
+  background: rgba(227, 244, 234, 0.72);
+}
+
+.recommendation-card.prevention::after {
+  background: rgba(225, 243, 241, 0.76);
+}
+
+.recommendation-card.best-practice::after {
+  background: rgba(255, 243, 201, 0.64);
+}
+
+.recommendation-check-list li,
+.recommendation-tip-list li,
+.recommendation-card > p {
+  color: var(--text-secondary);
+}
+
+.history-result-card {
+  padding: 14px;
+  border-radius: var(--radius-md);
+}
+
+.history-card-heading h2 {
+  color: var(--text-dark);
+}
+
+.history-date,
+.history-status,
+.history-card-footer {
+  color: var(--text-secondary);
+}
+
+.history-result-image {
+  height: 136px;
+}
+
+.history-card-footer {
+  border-top-color: rgba(217, 229, 215, 0.92);
+}
+
+.history-audit-card,
+.detail-summary-card,
+.detail-reason-card,
+.detail-timeline-card {
+  border-radius: var(--radius-md);
+}
+
+.history-audit-icon,
+.detail-timeline-card li.complete .detail-timeline-dot {
+  background: var(--primary-green);
+}
+
+.history-audit-icon .icon {
+  filter: brightness(0) invert(1);
+}
+
+.history-audit-list li::before,
+.detail-timeline-card li::before {
+  background: rgba(190, 210, 190, 0.86);
+}
+
+.detail-hero-card {
+  border-radius: 26px;
+  border-color: rgba(13, 77, 50, 0.16);
+  box-shadow: var(--shadow-card);
+}
+
+.detail-summary-heading h2,
+.detail-reason-card li,
+.detail-timeline-card strong,
+.history-audit-list strong {
+  color: var(--text-dark);
+}
+
+.detail-summary-heading p,
+.detail-confidence,
+.detail-detection-count,
+.detail-reason-card li span,
+.detail-timeline-card small,
+.history-audit-list small {
+  color: var(--text-secondary);
+}
+
+.detail-detection-ring {
+  border-color: var(--error-red);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.75),
+    0 0 0 7px rgba(180, 35, 42, 0.14);
+}
+
+.detail-detection-label,
+.detail-detection-index {
+  background: var(--error-red);
+}
+
+.settings-panel {
+  overflow: hidden;
+}
+
+.settings-row {
+  min-height: 68px;
+  padding: 13px 14px;
+}
+
+.settings-row-copy strong {
+  color: var(--text-dark);
+}
+
+.settings-size-control {
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  background: #EDF5EA;
+}
+
+.settings-size-control button {
+  border-radius: var(--radius-pill);
+}
+
+.settings-size-control button.active {
+  background: var(--primary-green);
+  color: white;
+}
+
+.settings-switch {
+  background: #D8E4D8;
+}
+
+.settings-switch.on {
+  background: var(--primary-green);
+}
+
+.settings-note {
+  border-radius: var(--radius-md);
+  background: var(--info-soft);
+  border-color: rgba(36, 126, 120, 0.22);
+  box-shadow: none;
+}
+
+.help-guide-list {
+  gap: 12px;
+}
+
+.help-guide-card {
+  min-height: 86px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.help-guide-copy strong {
+  color: var(--text-dark);
+}
+
+.help-guide-arrow,
+.settings-chevron {
+  color: var(--text-muted);
+}
+
+.consent-privacy-card {
+  min-height: 198px;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(239, 248, 237, 0.96));
+}
+
+.consent-icon-badge {
+  background: linear-gradient(180deg, var(--primary-green), var(--primary-green-dark));
+}
+
+.consent-icon-badge .icon {
+  filter: brightness(0) invert(1);
+}
+
+.consent-option {
+  min-height: 96px;
+  padding: 16px;
+}
+
+.consent-checkbox {
+  border-color: var(--border-strong);
+  border-radius: 8px;
+}
+
+.consent-checkbox:checked {
+  background:
+    url("data:image/svg+xml,%3Csvg width='18' height='14' viewBox='0 0 18 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 7L6.5 12L16.5 2' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 18px 14px no-repeat var(--primary-green);
+  border-color: var(--primary-green);
+}
+
+.consent-option-copy strong {
+  color: var(--text-dark);
+}
+
+.consent-option-copy span {
+  color: var(--text-secondary);
+}
+
+.image-card .plant-preview {
+  height: 214px;
+  border-color: rgba(190, 210, 190, 0.82);
+  background:
+    linear-gradient(145deg, rgba(227, 244, 234, 0.86), rgba(255, 255, 255, 0.92));
+}
+
+.symptom-marker {
+  border-color: var(--warning-orange);
+  background: rgba(255, 240, 222, 0.62);
+  box-shadow: 0 0 0 5px rgba(185, 106, 22, 0.12);
+}
+
+.timeline-dot {
+  background: var(--primary-green);
+  box-shadow: 0 0 0 5px var(--primary-green-soft);
+}
+
+.modal-panel {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.large-text .button,
+.large-text .result-primary-action,
+.large-text .result-outline-action,
+.large-text .detail-primary-action,
+.large-text .detail-secondary-action,
+.large-text .detail-danger-action,
+.large-text .recommendation-share-action,
+.large-text .recommendation-save-action,
+.large-text .recommendation-home-action {
+  min-height: 58px;
+}
+
+.large-text .nav-tab {
+  font-size: 12px;
+}
+
+.high-contrast .card,
+.high-contrast .history-result-card,
+.high-contrast .history-audit-card,
+.high-contrast .detail-summary-card,
+.high-contrast .detail-reason-card,
+.high-contrast .detail-timeline-card,
+.high-contrast .recommendation-card,
+.high-contrast .result-image-card,
+.high-contrast .result-explain-card,
+.high-contrast .review-preview-card,
+.high-contrast .review-check-card,
+.high-contrast .photo-guide-card,
+.high-contrast .settings-panel,
+.high-contrast .help-guide-card,
+.high-contrast .consent-option,
+.high-contrast .consent-privacy-card,
+.high-contrast .scan-check-card,
+.high-contrast .scan-test-card {
+  border-color: var(--border-strong);
+}
+
+.high-contrast .button-primary,
+.high-contrast .result-primary-action,
+.high-contrast .detail-primary-action,
+.high-contrast .recommendation-share-action,
+.high-contrast .nav-tab.active {
+  background: var(--primary-green-dark);
+}
+
+@media (max-width: 360px) {
+  .dashboard-scan-content h2,
+  .result-issue-card h2 {
+    font-size: 23px;
+  }
+
+  .result-secondary-grid,
+  .recommendation-secondary-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .scan-camera-card {
+    height: 392px;
+  }
+}
