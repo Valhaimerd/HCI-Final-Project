@@ -14,6 +14,7 @@
   --disabled-gray: #B8B8B8;
   --shadow-soft: 0 6px 18px rgba(27, 27, 27, 0.05);
   --frame-width: 402px;
+  --content-width: 358px;
   --body-size: 15px;
   font-family: Inter, Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }

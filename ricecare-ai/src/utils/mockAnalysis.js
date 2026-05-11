@@ -7,6 +7,9 @@ const modeMap = {
   healthy: "healthy-plant",
   uncertain: "uncertain",
   "bacterial-leaf-blight": "bacterial-leaf-blight",
+  "sheath-blight": "sheath-blight",
+  "rice-tungro": "rice-tungro",
+  "stem-borer": "stem-borer",
 };
 
 export function getMockAiResult(mode = "random") {

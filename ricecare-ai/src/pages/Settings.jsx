@@ -141,7 +141,7 @@ export default function Settings() {
               <strong>Manage Consent</strong>
               <small>Review image and advisory permissions</small>
             </div>
-            <span className="settings-chevron" aria-hidden="true">›</span>
+            <span className="settings-chevron" aria-hidden="true">&gt;</span>
           </Link>
 
           <button type="button" className="settings-row settings-link-row" onClick={clearHistory}>
@@ -150,7 +150,7 @@ export default function Settings() {
               <strong>Delete History</strong>
               <small>{historyCleared ? "Saved history cleared" : "Remove saved scan records"}</small>
             </div>
-            <span className="settings-chevron" aria-hidden="true">›</span>
+            <span className="settings-chevron" aria-hidden="true">&gt;</span>
           </button>
 
           <Link to="/about" className="settings-row settings-link-row">
@@ -159,7 +159,7 @@ export default function Settings() {
               <strong>About RiceCare AI</strong>
               <small>Version and advisory details</small>
             </div>
-            <span className="settings-chevron" aria-hidden="true">›</span>
+            <span className="settings-chevron" aria-hidden="true">&gt;</span>
           </Link>
         </div>
       </section>

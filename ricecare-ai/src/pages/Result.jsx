@@ -30,7 +30,15 @@ export default function Result() {
 
   const result = currentAiResult || mockAiResults[0];
   const isUncertain = result.id === "uncertain";
-  const image = selectedImage || "/images/result-rice.jpg";
+  const image = selectedImage || "/images/scan-rice.jpg";
+  const detections = result.detections?.length
+    ? result.detections
+    : [
+        { x: 24, y: 34, size: 14 },
+        { x: 51, y: 55, size: 16, primary: true },
+        { x: 73, y: 49, size: 13 },
+        { x: 59, y: 67, size: 14 },
+      ];
 
   return (
     <AppShell showNav={false} className="result-screen no-nav">
@@ -66,10 +74,18 @@ export default function Result() {
           <h2>Analyzed Image</h2>
         </div>
         <div className="result-image" style={{ backgroundImage: `url("${image}")` }}>
-          <span className="result-hotspot one" />
-          <span className="result-hotspot two" />
-          <span className="result-hotspot three" />
-          <span className="result-hotspot four" />
+          {detections.map((detection, index) => (
+            <span
+              className={`result-hotspot ${detection.primary ? "primary" : ""}`}
+              key={`${detection.x}-${detection.y}-${index}`}
+              style={{
+                left: `${detection.x}%`,
+                top: `${detection.y}%`,
+                width: `${detection.size || 14}px`,
+                height: `${detection.size || 14}px`,
+              }}
+            />
+          ))}
         </div>
       </section>
 

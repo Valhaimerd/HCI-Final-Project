@@ -33,7 +33,7 @@ const guideCards = [
     to: "/common-problems",
   },
   {
-    icon: "shieldwithlock",
+    icon: "shieldwithcheck",
     title: "Privacy and Image Use",
     summary: "Understand consent and saved records.",
     to: "/help/privacy-and-image-use",

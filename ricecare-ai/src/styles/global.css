@@ -92,21 +92,15 @@ strong {
 }
 
 .app-frame {
-  width: var(--frame-width);
-  max-width: 100%;
+  width: min(100%, var(--frame-width));
   min-height: 100vh;
   background: var(--main-background);
   box-shadow: 0 0 0 1px rgba(46, 125, 50, 0.06), 0 18px 60px rgba(0, 0, 0, 0.08);
 }
 
-@media (max-width: 700px) {
-  .app-root {
-    justify-content: flex-start;
-  }
-
+@media (max-width: 480px) {
   .app-frame {
-    width: 100vw;
-    max-width: none;
+    width: 100%;
     box-shadow: none;
   }
 }

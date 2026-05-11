@@ -48,7 +48,7 @@ function ScrollToTop() {
   return null;
 }
 
-function buildSavedRecord(result, status = "Saved") {
+function buildSavedRecord(result, status = "Saved", image = "/images/scan-rice.jpg") {
   return {
     id: `result-${Date.now()}`,
     date: formatDate(),
@@ -57,6 +57,9 @@ function buildSavedRecord(result, status = "Saved") {
     riskLevel: result.riskLevel,
     status,
     category: result.category,
+    image,
+    detailImage: image,
+    detections: result.detections,
     explanation: result.explanation,
     treatmentSummary: result.treatmentSteps[0],
     preventionSummary: result.preventionTips[0],
@@ -128,8 +131,10 @@ function AppProvider({ children }) {
     saveStorage("ricecare_consent_settings", consentSettings);
   }, [consentSettings]);
 
-  const historyItems = (savedResults.length ? savedResults : mockHistory).filter(
-    (item) => !deletedResultIds.includes(item.id)
+  const historyItems = [...savedResults, ...mockHistory].filter(
+    (item, index, items) =>
+      !deletedResultIds.includes(item.id) &&
+      items.findIndex((candidate) => candidate.id === item.id) === index
   );
   const activeAiResult = currentAiResult || mockAiResults[0];
 
@@ -140,17 +145,17 @@ function AppProvider({ children }) {
   }, [analysisMode]);
 
   const saveCurrentResult = useCallback(() => {
-    const record = buildSavedRecord(activeAiResult, "Saved");
+    const record = buildSavedRecord(activeAiResult, "Saved", selectedImage || "/images/scan-rice.jpg");
     setSavedResults((items) => [record, ...items]);
     setDeletedResultIds((items) => items.filter((id) => id !== record.id));
     return record;
-  }, [activeAiResult]);
+  }, [activeAiResult, selectedImage]);
 
   const shareCurrentResult = useCallback(() => {
-    const record = buildSavedRecord(activeAiResult, "Under Review");
+    const record = buildSavedRecord(activeAiResult, "Under Review", selectedImage || "/images/scan-rice.jpg");
     setSavedResults((items) => [record, ...items]);
     return record;
-  }, [activeAiResult]);
+  }, [activeAiResult, selectedImage]);
 
   const deleteResult = useCallback((id) => {
     setSavedResults((items) => items.filter((item) => item.id !== id));

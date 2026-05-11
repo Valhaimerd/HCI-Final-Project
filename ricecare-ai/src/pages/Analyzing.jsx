@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useRiceCare } from "../App";
 import { AppShell, Button, Card, Icon } from "../components";
 
 export default function Analyzing() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
+  const { selectedImage } = useRiceCare();
   const mode = params.get("mode") || "random";
+  const analysisImage = selectedImage || "/images/scan-rice.jpg";
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -32,7 +35,11 @@ export default function Analyzing() {
         <p>Please wait while RiceCare AI checks the image.</p>
       </section>
 
-      <section className="analyzing-preview" aria-label="Image analysis animation">
+      <section
+        className="analyzing-preview"
+        aria-label="Image analysis animation"
+        style={{ "--analysis-image": `url("${analysisImage}")` }}
+      >
         <div className="analyzing-corners" />
         <div className="analyzing-scan-line" />
         <Icon name="analyze" size={68} />

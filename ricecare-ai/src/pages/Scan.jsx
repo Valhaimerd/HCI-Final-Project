@@ -9,6 +9,9 @@ const modes = [
   ["medium-risk", "Brown Spot"],
   ["bacterial-leaf-blight", "Leaf Blight"],
   ["pest", "Pest Damage"],
+  ["sheath-blight", "Sheath Blight"],
+  ["rice-tungro", "Rice Tungro"],
+  ["stem-borer", "Stem Borer"],
   ["healthy", "Healthy"],
   ["uncertain", "Uncertain"],
 ];
@@ -20,13 +23,16 @@ export default function Scan() {
   const { setSelectedImage, analysisMode, setAnalysisMode } = useRiceCare();
 
   const simulatePhoto = () => {
-    setSelectedImage(null);
+    setSelectedImage("/images/scan-rice.jpg");
     navigate("/image-preview");
   };
 
   const selectFile = (event) => {
     const file = event.target.files?.[0];
-    if (file) setSelectedImage(URL.createObjectURL(file));
+    if (!file) return;
+
+    setSelectedImage(URL.createObjectURL(file));
+    event.target.value = "";
     navigate("/image-preview");
   };
 
