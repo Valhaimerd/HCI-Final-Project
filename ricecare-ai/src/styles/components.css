@@ -3829,6 +3829,7 @@
 
 .detail-detection-label,
 .detail-detection-index {
+  color: white;
   background: var(--error-red);
 }
 
